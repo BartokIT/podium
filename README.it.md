@@ -12,6 +12,9 @@ Applicazione web per disporre gli orchestrali di un’orchestra di fiati o di un
 - **Tipologie di disposizione** con descrizione e testi di riferimento, anch’esse modificabili fascia per fascia.
 - **Ingombri reali** di sedia, leggio e strumento, modificabili.
 - **Musicista, leggio e strumento** come parti distinte di ogni posizione: uno strumento ingombrante (timpani, xilofono…) può restare senza musicista, un leggio può essere condiviso da più musicisti o tolto, e singole posizioni o file intere possono stare su una **pedana**, disegnata come un leggero contorno tratteggiato con l’altezza in cm. L’analisi conta musicisti, leggii e pedane.
+- **Le formazioni ricordano l’allestimento**: leggii condivisi, pedane e strumenti senza musicista si salvano con la formazione (per strumento e numero di leggio) e vengono applicati ogni volta che la si dispone sul palco. Rigenerando con un’altra disposizione restano.
+- **Si parte da un palco vuoto**: si sceglie una formazione per iniziare, oppure si riprende l’ultima pianta con un clic.
+- **Materiale da portare**: musicisti previsti, sedie, leggii, pedane per altezza (con la superficie) e strumenti senza musicista, nel pannello laterale e, se vuoi, nell’esportazione PNG e SVG con le caselle da spuntare.
 - **Archi e file rettilinee** modificabili con le maniglie; ogni fila può passare da arco a linea e viceversa.
 - **Selezione multipla**, allineamento, rotazione con maniglia, opzione “sempre rivolto al direttore”.
 - **Controlli automatici**, esportazione PNG e SVG, progetti in JSON, annulla e ripeti.

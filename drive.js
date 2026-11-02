@@ -438,7 +438,7 @@ const fmtTime = ms=>{ try{ return new Date(ms).toLocaleTimeString(loc(),{hour:"2
 const stripExt = n => String(n||"").replace(/\.json$/i,"");
 const cleanName = n => String(n||"").replace(/[\\/:*?"<>|]+/g," ").replace(/\s+/g," ").trim().slice(0,100);
 const defaultName = ()=> cleanName(`${curFormName()} ${new Date().toLocaleDateString(loc()).replace(/\//g,"-")}`);
-function setLink(l){ D.link = l; ls.set("link", l ? JSON.stringify(l) : null); }
+function setLink(l){ D.link = l; D.idleLink = null; ls.set("link", l ? JSON.stringify(l) : null); }
 /* the status is stored as a key so it can be re-rendered when the language changes */
 function setStatus(kind, key, arg){
   D.status = kind; D.statusKey = key||""; D.statusArg = arg||null;
@@ -725,7 +725,11 @@ async function autoSave(){
   render();
 }
 const baseCommit = window.commit;
-window.commit = function(){ const r = baseCommit.apply(this, arguments); scheduleAuto(); return r; };
+window.commit = function(){
+  /* a new plan was started instead of resuming the last one: forget the old file so it is never overwritten */
+  if(D.idleLink){ D.idleLink = null; setLink(null); }
+  const r = baseCommit.apply(this, arguments); scheduleAuto(); return r;
+};
 
 /* ---------- events ---------- */
 function open(){
@@ -786,6 +790,14 @@ box.addEventListener("click", e=>{
 if(typeof langHooks !== "undefined") langHooks.push(render);
 
 /* ---------- initial state ---------- */
+/* The app opens on an empty stage: the link to the last plan's file waits until that plan is resumed. */
+if(D.link && !state.musicians.length){ D.idleLink = D.link; D.link = null; }
+if(typeof resumeHooks !== "undefined") resumeHooks.push(()=>{
+  if(!D.idleLink) return;
+  D.link = D.idleLink; D.idleLink = null; D.lastSnap = snap();
+  if(D.tok) setStatus("ok","drv.st.linked"); else if(D.status==="idle") setStatus("idle","drv.st.resumeLinked",{name:D.link.name});
+  render();
+});
 if(clientId() && ls.get("was")){
   if(D.link) setStatus("idle","drv.st.resumeLinked",{name:D.link.name}); else setStatus("idle","drv.st.resume");
   loadGIS().catch(()=>{});

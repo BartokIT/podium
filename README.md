@@ -12,6 +12,9 @@ A web app for seating the players of a wind orchestra or concert band on stage. 
 - **Layout types** with descriptions and reference texts: concentric semicircles, wind ensemble by choirs, Italian band, European harmonie, sectors by family, chamber semicircle, brass band, straight rows. These are editable presets too, band by band.
 - **Real footprints** for chair, stand and instrument, all adjustable; percussion, harp and piano get their own space.
 - **Musician, stand and instrument** as separate parts of each position: a bulky instrument (timpani, xylophone…) can stand without its musician, a music stand can be shared by several musicians or removed, and single positions or whole rows can go on a **riser**, drawn as a light dashed outline with its height in cm. The analysis counts musicians, stands and risers.
+- **Ensembles remember their set-up**: shared stands, risers and instruments without musician are saved with the ensemble (by instrument and stand number) and applied every time it is placed on stage. Regenerating with another layout keeps them.
+- **Starts on an empty stage**: choose an ensemble to begin, or resume the last plan with one click.
+- **Checklist for the stage crew**: musicians expected, chairs, music stands, risers by height (with their area) and instruments without musician, shown in the side panel and optionally added to PNG and SVG exports with tick boxes.
 - **Arcs and straight rows** drawn on the plan and edited with handles: radius, span, rotation, flattening, length, tilt. Any row can switch between curved and straight; players redistribute automatically.
 - **Multiple selection** by click or rectangle, moving, alignment, rotation handle, “always face the conductor” option.
 - **Automatic checks**: overlaps, seats off the stage, footprint and density.

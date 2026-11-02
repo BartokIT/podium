@@ -232,6 +232,11 @@ main.stage{ position:relative; min-width:0; min-height:0; background:var(--canva
 .arc-tagg.act .arc-tag{ fill:var(--accent-ink); fill-opacity:1; }
 .arc-tagg.dim{ opacity:.4; }
 .arcm-o{ fill:var(--accent); fill-opacity:.07; stroke:var(--accent); stroke-width:1.6; }
+.emptyst{ position:absolute; inset:0; display:none; align-items:center; justify-content:center; padding:16px; pointer-events:none; }
+.emptyst.on{ display:flex; }
+.emptyst .card0{ pointer-events:auto; max-width:390px; background:color-mix(in srgb, var(--panel) 94%, transparent); border:1px solid var(--line); border-radius:10px; padding:14px 16px; text-align:center; box-shadow:0 4px 18px rgba(0,0,0,.12); }
+.emptyst b{ font-family:var(--cond); font-size:18px; }
+.emptyst p{ margin:6px 0 4px; color:var(--muted); font-size:13px; }
 .archint{ position:absolute; top:10px; left:10px; right:60px; display:none; pointer-events:none; }
 .archint.on{ display:flex; }
 .archint span{ background:color-mix(in srgb, var(--panel) 92%, transparent); border:1px solid var(--accent); border-radius:7px; padding:6px 10px; font-size:12.5px; max-width:760px; }
@@ -420,6 +425,7 @@ kbd{ font-family:var(--ui); font-size:12px; border:1px solid var(--line); border
       <g id="world"></g>
     </svg>
     <div class="archint" id="arcHint"><span id="arcHintT"></span></div>
+    <div class="emptyst" id="emptySt"><div class="card0"><b data-i18n="empty.title"></b><p data-i18n="empty.text"></p><div class="btnrow"><button class="btn primary" id="bChoose" data-i18n="empty.choose"></button><button class="btn" id="bResume" hidden></button></div></div></div>
     <div class="hud"><span id="hudPos"></span><span id="hudZoom">100%</span><span id="hudSel"></span></div>
     <div class="zoomctl"><button id="zOut" data-i18n-title="tb.zoomOut">−</button><button id="zIn" data-i18n-title="tb.zoomIn">+</button></div>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -542,7 +548,8 @@ I18N.en = {
 "ana.out.one":"{n} seat is off the stage.","ana.out.other":"{n} seats are off the stage.",
 "ana.select":"Select","ana.ok":"No overlaps: every seat is on the stage.","ana.full":"Very full stage: more than 55% is taken by footprints, aisles will be narrow.",
 "leg.title":"Legend","leg.note":"Dashed red outline: overlap. Orange outline: off the stage.",
-"part.player":"Musician","part.present":"Present","part.instOnly":"Instrument only","part.stand":"Music stand","part.own":"Own","part.shared":"Shared","part.none":"None","part.sharedWith":"Shares the stand with {list}.","part.shareHint":"To share a stand, select two or more musicians and press Shared.","part.riser":"Riser height (cm)","arcs.riser":"Riser for the whole row (cm)","toast.shareNeed":"Select at least two positions to share a stand","toast.shared":"{n} musicians now share one stand","ana.players":"Musicians","ana.instOnly":"Instruments without musician","ana.stands":"Music stands","ana.risers":"Positions on risers","sym.title":"Symbols","sym.player":"Musician","sym.stand":"Music stand","sym.shared":"Stand shared by several musicians","sym.riser":"Riser, with its height in cm","sym.instOnly":"Instrument without musician","help.parts":"Each position is made of the musician, the music stand and, for bulky instruments, the instrument. In the Selection panel you can leave only the instrument, share one stand among several musicians or remove it, and put single positions or whole rows on a riser.",
+"form.empty":"Empty stage","empty.title":"Empty stage","empty.text":"Choose a concert ensemble to place the musicians, or add positions one by one from the Selection panel.","empty.choose":"Choose an ensemble","empty.resume":"Resume the last plan ({count})","mat.title":"Checklist","mat.people":"Musicians expected","mat.chairs":"Chairs","mat.stands":"Music stands","mat.shared.one":"{n} shared","mat.shared.other":"{n} shared","mat.risers":"Risers","mat.none":"none","mat.riserH":"Risers {h} cm","mat.riserV":"{count}, about {a} m²","mat.line":"{k}: {v}","mat.export":"Add the checklist to PNG and SVG exports","mat.empty":"The stage is empty.","mat.note":"Riser areas add up the footprints of the raised positions: round them up to your riser modules.","ed.form.parts":"Stands, risers and instruments without musician","ed.form.partsHint":"Saved by instrument and stand number, and applied every time the ensemble is placed on stage.","ed.form.partsNone":"Nothing set: every musician has their own stand and no one is on a riser.","ed.form.partsFromStage":"Take from the stage","ed.form.partsClear":"Clear","parts.shared.one":"{n} shared stand","parts.shared.other":"{n} shared stands","parts.noStand.one":"{n} position without stand","parts.noStand.other":"{n} positions without stand","parts.risers.one":"{n} position on a riser","parts.risers.other":"{n} positions on risers","parts.np.one":"{n} instrument without musician","parts.np.other":"{n} instruments without musician",
+"part.player":"Musician","part.present":"Present","part.instOnly":"Instrument only","part.stand":"Music stand","part.own":"Own","part.shared":"Shared","part.none":"None","part.sharedWith":"Shares the stand with {list}.","part.shareHint":"To share a stand, select two or more musicians and press Shared.","part.riser":"Riser height (cm)","arcs.riser":"Riser for the whole row (cm)","toast.shareNeed":"Select at least two positions to share a stand","toast.shared":"{n} musicians now share one stand","ana.instOnly":"Instruments without musician","sym.title":"Symbols","sym.player":"Musician","sym.stand":"Music stand","sym.shared":"Stand shared by several musicians","sym.riser":"Riser, with its height in cm","sym.instOnly":"Instrument without musician","help.parts":"Each position is made of the musician, the music stand and, for bulky instruments, the instrument. In the Selection panel you can leave only the instrument, share one stand among several musicians or remove it, and put single positions or whole rows on a riser.",
 "preset.edit.t":"Edit the preset “{name}”","preset.mine":"Personal preset","preset.reset":"Restore the original presets","preset.resetConfirm":"Confirm: restore the original presets","preset.copyOf":"{name} (copy)",
 "ed.title.form.edit":"Edit ensemble: {name}","ed.title.form.new":"New ensemble preset",
 "ed.title.lay.edit":"Edit layout: {name}","ed.title.lay.new":"New layout preset",
@@ -755,7 +762,8 @@ I18N.it = {
 "ana.out.one":"{n} seduta esce dal palco.","ana.out.other":"{n} sedute escono dal palco.",
 "ana.select":"Seleziona","ana.ok":"Nessuna sovrapposizione: tutte le sedute stanno sul palco.","ana.full":"Palco molto pieno: oltre il 55% è occupato dagli ingombri, i passaggi saranno stretti.",
 "leg.title":"Legenda","leg.note":"Bordo rosso tratteggiato: sovrapposizione. Bordo arancio: fuori dal palco.",
-"part.player":"Musicista","part.present":"Presente","part.instOnly":"Solo strumento","part.stand":"Leggio","part.own":"Proprio","part.shared":"Condiviso","part.none":"Nessuno","part.sharedWith":"Condivide il leggio con {list}.","part.shareHint":"Per condividere un leggio seleziona due o più musicisti e premi Condiviso.","part.riser":"Altezza pedana (cm)","arcs.riser":"Pedana per tutta la fila (cm)","toast.shareNeed":"Seleziona almeno due posizioni per condividere un leggio","toast.shared":"{n} musicisti ora condividono un leggio","ana.players":"Musicisti","ana.instOnly":"Strumenti senza musicista","ana.stands":"Leggii","ana.risers":"Posizioni su pedana","sym.title":"Simboli","sym.player":"Musicista","sym.stand":"Leggio","sym.shared":"Leggio condiviso da più musicisti","sym.riser":"Pedana, con l’altezza in cm","sym.instOnly":"Strumento senza musicista","help.parts":"Ogni posizione è composta dal musicista, dal leggio e, per gli strumenti ingombranti, dallo strumento. Nel pannello Selezione puoi lasciare solo lo strumento, far condividere un leggio a più musicisti o toglierlo, e mettere su una pedana singole posizioni o intere file.",
+"form.empty":"Palco vuoto","empty.title":"Palco vuoto","empty.text":"Scegli una formazione del concerto per disporre i musicisti, oppure aggiungi le posizioni una alla volta dal pannello Selezione.","empty.choose":"Scegli una formazione","empty.resume":"Riprendi l’ultima pianta ({count})","mat.title":"Materiale da portare","mat.people":"Musicisti previsti","mat.chairs":"Sedie","mat.stands":"Leggii","mat.shared.one":"{n} condiviso","mat.shared.other":"{n} condivisi","mat.risers":"Pedane","mat.none":"nessuna","mat.riserH":"Pedane da {h} cm","mat.riserV":"{count}, circa {a} m²","mat.line":"{k}: {v}","mat.export":"Aggiungi l’elenco all’esportazione PNG e SVG","mat.empty":"Il palco è vuoto.","mat.note":"La superficie delle pedane somma gli ingombri delle posizioni rialzate: arrotondala ai moduli disponibili.","ed.form.parts":"Leggii, pedane e strumenti senza musicista","ed.form.partsHint":"Vengono salvati per strumento e numero di leggio e applicati ogni volta che la formazione viene disposta sul palco.","ed.form.partsNone":"Nessuna impostazione: ogni musicista ha il proprio leggio e nessuno è su pedana.","ed.form.partsFromStage":"Prendi dal palco","ed.form.partsClear":"Azzera","parts.shared.one":"{n} leggio condiviso","parts.shared.other":"{n} leggii condivisi","parts.noStand.one":"{n} posizione senza leggio","parts.noStand.other":"{n} posizioni senza leggio","parts.risers.one":"{n} posizione su pedana","parts.risers.other":"{n} posizioni su pedana","parts.np.one":"{n} strumento senza musicista","parts.np.other":"{n} strumenti senza musicista",
+"part.player":"Musicista","part.present":"Presente","part.instOnly":"Solo strumento","part.stand":"Leggio","part.own":"Proprio","part.shared":"Condiviso","part.none":"Nessuno","part.sharedWith":"Condivide il leggio con {list}.","part.shareHint":"Per condividere un leggio seleziona due o più musicisti e premi Condiviso.","part.riser":"Altezza pedana (cm)","arcs.riser":"Pedana per tutta la fila (cm)","toast.shareNeed":"Seleziona almeno due posizioni per condividere un leggio","toast.shared":"{n} musicisti ora condividono un leggio","ana.instOnly":"Strumenti senza musicista","sym.title":"Simboli","sym.player":"Musicista","sym.stand":"Leggio","sym.shared":"Leggio condiviso da più musicisti","sym.riser":"Pedana, con l’altezza in cm","sym.instOnly":"Strumento senza musicista","help.parts":"Ogni posizione è composta dal musicista, dal leggio e, per gli strumenti ingombranti, dallo strumento. Nel pannello Selezione puoi lasciare solo lo strumento, far condividere un leggio a più musicisti o toglierlo, e mettere su una pedana singole posizioni o intere file.",
 "preset.edit.t":"Modifica il preset “{name}”","preset.mine":"Preset personale","preset.reset":"Ripristina i preset originali","preset.resetConfirm":"Conferma: ripristina i preset originali","preset.copyOf":"{name} (copia)",
 "ed.title.form.edit":"Modifica formazione: {name}","ed.title.form.new":"Nuovo preset di formazione",
 "ed.title.lay.edit":"Modifica disposizione: {name}","ed.title.lay.new":"Nuovo preset di disposizione",
@@ -968,7 +976,8 @@ I18N.es = {
 "ana.out.one":"{n} puesto sale del escenario.","ana.out.other":"{n} puestos salen del escenario.",
 "ana.select":"Seleccionar","ana.ok":"Sin solapamientos: todos los puestos están en el escenario.","ana.full":"Escenario muy lleno: más del 55 % está ocupado, los pasillos serán estrechos.",
 "leg.title":"Leyenda","leg.note":"Borde rojo discontinuo: solapamiento. Borde naranja: fuera del escenario.",
-"part.player":"Músico","part.present":"Presente","part.instOnly":"Solo instrumento","part.stand":"Atril","part.own":"Propio","part.shared":"Compartido","part.none":"Ninguno","part.sharedWith":"Comparte el atril con {list}.","part.shareHint":"Para compartir un atril, selecciona dos o más músicos y pulsa Compartido.","part.riser":"Altura de la tarima (cm)","arcs.riser":"Tarima para toda la fila (cm)","toast.shareNeed":"Selecciona al menos dos posiciones para compartir un atril","toast.shared":"{n} músicos comparten ahora un atril","ana.players":"Músicos","ana.instOnly":"Instrumentos sin músico","ana.stands":"Atriles","ana.risers":"Posiciones sobre tarima","sym.title":"Símbolos","sym.player":"Músico","sym.stand":"Atril","sym.shared":"Atril compartido por varios músicos","sym.riser":"Tarima, con su altura en cm","sym.instOnly":"Instrumento sin músico","help.parts":"Cada posición se compone del músico, el atril y, en los instrumentos voluminosos, el instrumento. En el panel Selección puedes dejar solo el instrumento, hacer que varios músicos compartan un atril o quitarlo, y subir a una tarima posiciones sueltas o filas enteras.",
+"form.empty":"Escenario vacío","empty.title":"Escenario vacío","empty.text":"Elige una formación del concierto para colocar a los músicos, o añade las posiciones una a una desde el panel Selección.","empty.choose":"Elegir una formación","empty.resume":"Recuperar el último plano ({count})","mat.title":"Material necesario","mat.people":"Músicos previstos","mat.chairs":"Sillas","mat.stands":"Atriles","mat.shared.one":"{n} compartido","mat.shared.other":"{n} compartidos","mat.risers":"Tarimas","mat.none":"ninguna","mat.riserH":"Tarimas de {h} cm","mat.riserV":"{count}, unos {a} m²","mat.line":"{k}: {v}","mat.export":"Añadir la lista a la exportación PNG y SVG","mat.empty":"El escenario está vacío.","mat.note":"La superficie de las tarimas suma el espacio de las posiciones elevadas: redondéala a los módulos disponibles.","ed.form.parts":"Atriles, tarimas e instrumentos sin músico","ed.form.partsHint":"Se guardan por instrumento y número de atril, y se aplican cada vez que la formación se coloca en el escenario.","ed.form.partsNone":"Nada configurado: cada músico tiene su atril y nadie está sobre tarima.","ed.form.partsFromStage":"Tomar del escenario","ed.form.partsClear":"Vaciar","parts.shared.one":"{n} atril compartido","parts.shared.other":"{n} atriles compartidos","parts.noStand.one":"{n} posición sin atril","parts.noStand.other":"{n} posiciones sin atril","parts.risers.one":"{n} posición sobre tarima","parts.risers.other":"{n} posiciones sobre tarima","parts.np.one":"{n} instrumento sin músico","parts.np.other":"{n} instrumentos sin músico",
+"part.player":"Músico","part.present":"Presente","part.instOnly":"Solo instrumento","part.stand":"Atril","part.own":"Propio","part.shared":"Compartido","part.none":"Ninguno","part.sharedWith":"Comparte el atril con {list}.","part.shareHint":"Para compartir un atril, selecciona dos o más músicos y pulsa Compartido.","part.riser":"Altura de la tarima (cm)","arcs.riser":"Tarima para toda la fila (cm)","toast.shareNeed":"Selecciona al menos dos posiciones para compartir un atril","toast.shared":"{n} músicos comparten ahora un atril","ana.instOnly":"Instrumentos sin músico","sym.title":"Símbolos","sym.player":"Músico","sym.stand":"Atril","sym.shared":"Atril compartido por varios músicos","sym.riser":"Tarima, con su altura en cm","sym.instOnly":"Instrumento sin músico","help.parts":"Cada posición se compone del músico, el atril y, en los instrumentos voluminosos, el instrumento. En el panel Selección puedes dejar solo el instrumento, hacer que varios músicos compartan un atril o quitarlo, y subir a una tarima posiciones sueltas o filas enteras.",
 "preset.edit.t":"Editar el preajuste «{name}»","preset.mine":"Preajuste personal","preset.reset":"Restaurar los preajustes originales","preset.resetConfirm":"Confirmar: restaurar los preajustes originales","preset.copyOf":"{name} (copia)",
 "ed.title.form.edit":"Editar formación: {name}","ed.title.form.new":"Nuevo preajuste de formación",
 "ed.title.lay.edit":"Editar disposición: {name}","ed.title.lay.new":"Nuevo preajuste de disposición",
@@ -1181,7 +1190,8 @@ I18N.fr = {
 "ana.out.one":"{n} place dépasse de la scène.","ana.out.other":"{n} places dépassent de la scène.",
 "ana.select":"Sélectionner","ana.ok":"Aucun chevauchement : toutes les places sont sur la scène.","ana.full":"Scène très pleine : plus de 55 % est occupé, les passages seront étroits.",
 "leg.title":"Légende","leg.note":"Contour rouge pointillé : chevauchement. Contour orange : hors de la scène.",
-"part.player":"Musicien","part.present":"Présent","part.instOnly":"Instrument seul","part.stand":"Pupitre","part.own":"Individuel","part.shared":"Partagé","part.none":"Aucun","part.sharedWith":"Partage le pupitre avec {list}.","part.shareHint":"Pour partager un pupitre, sélectionnez deux musiciens ou plus et appuyez sur Partagé.","part.riser":"Hauteur du praticable (cm)","arcs.riser":"Praticable pour tout le rang (cm)","toast.shareNeed":"Sélectionnez au moins deux positions pour partager un pupitre","toast.shared":"{n} musiciens partagent maintenant un pupitre","ana.players":"Musiciens","ana.instOnly":"Instruments sans musicien","ana.stands":"Pupitres","ana.risers":"Positions sur praticable","sym.title":"Symboles","sym.player":"Musicien","sym.stand":"Pupitre","sym.shared":"Pupitre partagé par plusieurs musiciens","sym.riser":"Praticable, avec sa hauteur en cm","sym.instOnly":"Instrument sans musicien","help.parts":"Chaque position comprend le musicien, le pupitre et, pour les instruments encombrants, l’instrument. Dans le panneau Sélection, vous pouvez ne laisser que l’instrument, faire partager un pupitre à plusieurs musiciens ou le retirer, et placer des positions isolées ou des rangs entiers sur un praticable.",
+"form.empty":"Scène vide","empty.title":"Scène vide","empty.text":"Choisissez une formation du concert pour placer les musiciens, ou ajoutez les positions une à une depuis le panneau Sélection.","empty.choose":"Choisir une formation","empty.resume":"Reprendre le dernier plan ({count})","mat.title":"Matériel à prévoir","mat.people":"Musiciens prévus","mat.chairs":"Chaises","mat.stands":"Pupitres","mat.shared.one":"{n} partagé","mat.shared.other":"{n} partagés","mat.risers":"Praticables","mat.none":"aucun","mat.riserH":"Praticables de {h} cm","mat.riserV":"{count}, environ {a} m²","mat.line":"{k} : {v}","mat.export":"Ajouter la liste à l’export PNG et SVG","mat.empty":"La scène est vide.","mat.note":"La surface des praticables additionne l’emprise des positions surélevées : arrondissez-la aux modules disponibles.","ed.form.parts":"Pupitres, praticables et instruments sans musicien","ed.form.partsHint":"Enregistrés par instrument et numéro de pupitre, ils sont appliqués chaque fois que la formation est placée sur scène.","ed.form.partsNone":"Rien de défini : chaque musicien a son pupitre et personne n’est sur un praticable.","ed.form.partsFromStage":"Reprendre de la scène","ed.form.partsClear":"Vider","parts.shared.one":"{n} pupitre partagé","parts.shared.other":"{n} pupitres partagés","parts.noStand.one":"{n} position sans pupitre","parts.noStand.other":"{n} positions sans pupitre","parts.risers.one":"{n} position sur praticable","parts.risers.other":"{n} positions sur praticable","parts.np.one":"{n} instrument sans musicien","parts.np.other":"{n} instruments sans musicien",
+"part.player":"Musicien","part.present":"Présent","part.instOnly":"Instrument seul","part.stand":"Pupitre","part.own":"Individuel","part.shared":"Partagé","part.none":"Aucun","part.sharedWith":"Partage le pupitre avec {list}.","part.shareHint":"Pour partager un pupitre, sélectionnez deux musiciens ou plus et appuyez sur Partagé.","part.riser":"Hauteur du praticable (cm)","arcs.riser":"Praticable pour tout le rang (cm)","toast.shareNeed":"Sélectionnez au moins deux positions pour partager un pupitre","toast.shared":"{n} musiciens partagent maintenant un pupitre","ana.instOnly":"Instruments sans musicien","sym.title":"Symboles","sym.player":"Musicien","sym.stand":"Pupitre","sym.shared":"Pupitre partagé par plusieurs musiciens","sym.riser":"Praticable, avec sa hauteur en cm","sym.instOnly":"Instrument sans musicien","help.parts":"Chaque position comprend le musicien, le pupitre et, pour les instruments encombrants, l’instrument. Dans le panneau Sélection, vous pouvez ne laisser que l’instrument, faire partager un pupitre à plusieurs musiciens ou le retirer, et placer des positions isolées ou des rangs entiers sur un praticable.",
 "preset.edit.t":"Modifier le préréglage « {name} »","preset.mine":"Préréglage personnel","preset.reset":"Rétablir les préréglages d’origine","preset.resetConfirm":"Confirmer : rétablir les préréglages d’origine","preset.copyOf":"{name} (copie)",
 "ed.title.form.edit":"Modifier la formation : {name}","ed.title.form.new":"Nouveau préréglage de formation",
 "ed.title.lay.edit":"Modifier le placement : {name}","ed.title.lay.new":"Nouveau préréglage de placement",
@@ -1394,7 +1404,8 @@ I18N.de = {
 "ana.out.one":"{n} Platz ragt über die Bühne hinaus.","ana.out.other":"{n} Plätze ragen über die Bühne hinaus.",
 "ana.select":"Auswählen","ana.ok":"Keine Überschneidungen: Alle Plätze liegen auf der Bühne.","ana.full":"Sehr volle Bühne: Über 55 % sind belegt, die Gänge werden eng.",
 "leg.title":"Legende","leg.note":"Rot gestrichelt: Überschneidung. Orange: außerhalb der Bühne.",
-"part.player":"Musiker","part.present":"Anwesend","part.instOnly":"Nur Instrument","part.stand":"Notenpult","part.own":"Eigenes","part.shared":"Geteilt","part.none":"Keines","part.sharedWith":"Teilt das Pult mit {list}.","part.shareHint":"Um ein Pult zu teilen, zwei oder mehr Musiker auswählen und auf Geteilt klicken.","part.riser":"Podesthöhe (cm)","arcs.riser":"Podest für die ganze Reihe (cm)","toast.shareNeed":"Mindestens zwei Positionen auswählen, um ein Pult zu teilen","toast.shared":"{n} Musiker teilen sich jetzt ein Pult","ana.players":"Musiker","ana.instOnly":"Instrumente ohne Musiker","ana.stands":"Notenpulte","ana.risers":"Positionen auf Podesten","sym.title":"Symbole","sym.player":"Musiker","sym.stand":"Notenpult","sym.shared":"Pult für mehrere Musiker","sym.riser":"Podest mit Höhe in cm","sym.instOnly":"Instrument ohne Musiker","help.parts":"Jede Position besteht aus dem Musiker, dem Notenpult und bei großen Instrumenten dem Instrument selbst. Im Bereich Auswahl kann nur das Instrument stehen bleiben, ein Pult von mehreren Musikern geteilt oder entfernt werden, und einzelne Positionen oder ganze Reihen lassen sich auf ein Podest stellen.",
+"form.empty":"Leere Bühne","empty.title":"Leere Bühne","empty.text":"Wählen Sie eine Konzertbesetzung, um die Musiker aufzustellen, oder fügen Sie Positionen einzeln im Bereich Auswahl hinzu.","empty.choose":"Besetzung wählen","empty.resume":"Letzten Plan fortsetzen ({count})","mat.title":"Materialliste","mat.people":"Erwartete Musiker","mat.chairs":"Stühle","mat.stands":"Notenpulte","mat.shared.one":"{n} geteilt","mat.shared.other":"{n} geteilt","mat.risers":"Podeste","mat.none":"keine","mat.riserH":"Podeste {h} cm","mat.riserV":"{count}, etwa {a} m²","mat.line":"{k}: {v}","mat.export":"Liste in den PNG- und SVG-Export aufnehmen","mat.empty":"Die Bühne ist leer.","mat.note":"Die Podestfläche summiert die Grundflächen der erhöhten Positionen: auf die vorhandenen Module aufrunden.","ed.form.parts":"Pulte, Podeste und Instrumente ohne Musiker","ed.form.partsHint":"Werden nach Instrument und Pultnummer gespeichert und jedes Mal angewendet, wenn die Besetzung auf der Bühne aufgestellt wird.","ed.form.partsNone":"Nichts festgelegt: Jeder Musiker hat ein eigenes Pult, niemand steht auf einem Podest.","ed.form.partsFromStage":"Von der Bühne übernehmen","ed.form.partsClear":"Leeren","parts.shared.one":"{n} geteiltes Pult","parts.shared.other":"{n} geteilte Pulte","parts.noStand.one":"{n} Position ohne Pult","parts.noStand.other":"{n} Positionen ohne Pult","parts.risers.one":"{n} Position auf Podest","parts.risers.other":"{n} Positionen auf Podesten","parts.np.one":"{n} Instrument ohne Musiker","parts.np.other":"{n} Instrumente ohne Musiker",
+"part.player":"Musiker","part.present":"Anwesend","part.instOnly":"Nur Instrument","part.stand":"Notenpult","part.own":"Eigenes","part.shared":"Geteilt","part.none":"Keines","part.sharedWith":"Teilt das Pult mit {list}.","part.shareHint":"Um ein Pult zu teilen, zwei oder mehr Musiker auswählen und auf Geteilt klicken.","part.riser":"Podesthöhe (cm)","arcs.riser":"Podest für die ganze Reihe (cm)","toast.shareNeed":"Mindestens zwei Positionen auswählen, um ein Pult zu teilen","toast.shared":"{n} Musiker teilen sich jetzt ein Pult","ana.instOnly":"Instrumente ohne Musiker","sym.title":"Symbole","sym.player":"Musiker","sym.stand":"Notenpult","sym.shared":"Pult für mehrere Musiker","sym.riser":"Podest mit Höhe in cm","sym.instOnly":"Instrument ohne Musiker","help.parts":"Jede Position besteht aus dem Musiker, dem Notenpult und bei großen Instrumenten dem Instrument selbst. Im Bereich Auswahl kann nur das Instrument stehen bleiben, ein Pult von mehreren Musikern geteilt oder entfernt werden, und einzelne Positionen oder ganze Reihen lassen sich auf ein Podest stellen.",
 "preset.edit.t":"Vorlage „{name}“ bearbeiten","preset.mine":"Eigene Vorlage","preset.reset":"Ursprüngliche Vorlagen wiederherstellen","preset.resetConfirm":"Bestätigen: ursprüngliche Vorlagen wiederherstellen","preset.copyOf":"{name} (Kopie)",
 "ed.title.form.edit":"Besetzung bearbeiten: {name}","ed.title.form.new":"Neue Besetzungsvorlage",
 "ed.title.lay.edit":"Aufstellung bearbeiten: {name}","ed.title.lay.new":"Neue Aufstellungsvorlage",
@@ -1607,7 +1618,8 @@ I18N.pt = {
 "ana.out.one":"{n} lugar sai do palco.","ana.out.other":"{n} lugares saem do palco.",
 "ana.select":"Selecionar","ana.ok":"Sem sobreposições: todos os lugares estão no palco.","ana.full":"Palco muito cheio: mais de 55% está ocupado, as passagens ficarão estreitas.",
 "leg.title":"Legenda","leg.note":"Contorno vermelho tracejado: sobreposição. Contorno laranja: fora do palco.",
-"part.player":"Músico","part.present":"Presente","part.instOnly":"Só instrumento","part.stand":"Estante","part.own":"Própria","part.shared":"Compartilhada","part.none":"Nenhuma","part.sharedWith":"Compartilha a estante com {list}.","part.shareHint":"Para compartilhar uma estante, selecione dois ou mais músicos e toque em Compartilhada.","part.riser":"Altura do praticável (cm)","arcs.riser":"Praticável para a fileira inteira (cm)","toast.shareNeed":"Selecione pelo menos duas posições para compartilhar uma estante","toast.shared":"{n} músicos agora compartilham uma estante","ana.players":"Músicos","ana.instOnly":"Instrumentos sem músico","ana.stands":"Estantes","ana.risers":"Posições em praticável","sym.title":"Símbolos","sym.player":"Músico","sym.stand":"Estante","sym.shared":"Estante compartilhada por vários músicos","sym.riser":"Praticável, com a altura em cm","sym.instOnly":"Instrumento sem músico","help.parts":"Cada posição é formada pelo músico, pela estante e, nos instrumentos volumosos, pelo próprio instrumento. No painel Seleção você pode deixar só o instrumento, fazer vários músicos compartilharem uma estante ou retirá-la, e colocar posições isoladas ou fileiras inteiras sobre um praticável.",
+"form.empty":"Palco vazio","empty.title":"Palco vazio","empty.text":"Escolha uma formação do concerto para posicionar os músicos, ou adicione as posições uma a uma pelo painel Seleção.","empty.choose":"Escolher uma formação","empty.resume":"Retomar a última planta ({count})","mat.title":"Material necessário","mat.people":"Músicos previstos","mat.chairs":"Cadeiras","mat.stands":"Estantes","mat.shared.one":"{n} compartilhada","mat.shared.other":"{n} compartilhadas","mat.risers":"Praticáveis","mat.none":"nenhum","mat.riserH":"Praticáveis de {h} cm","mat.riserV":"{count}, cerca de {a} m²","mat.line":"{k}: {v}","mat.export":"Adicionar a lista à exportação PNG e SVG","mat.empty":"O palco está vazio.","mat.note":"A área dos praticáveis soma o espaço das posições elevadas: arredonde para os módulos disponíveis.","ed.form.parts":"Estantes, praticáveis e instrumentos sem músico","ed.form.partsHint":"São salvos por instrumento e número de estante e aplicados sempre que a formação é posicionada no palco.","ed.form.partsNone":"Nada definido: cada músico tem sua estante e ninguém está em praticável.","ed.form.partsFromStage":"Pegar do palco","ed.form.partsClear":"Limpar","parts.shared.one":"{n} estante compartilhada","parts.shared.other":"{n} estantes compartilhadas","parts.noStand.one":"{n} posição sem estante","parts.noStand.other":"{n} posições sem estante","parts.risers.one":"{n} posição em praticável","parts.risers.other":"{n} posições em praticável","parts.np.one":"{n} instrumento sem músico","parts.np.other":"{n} instrumentos sem músico",
+"part.player":"Músico","part.present":"Presente","part.instOnly":"Só instrumento","part.stand":"Estante","part.own":"Própria","part.shared":"Compartilhada","part.none":"Nenhuma","part.sharedWith":"Compartilha a estante com {list}.","part.shareHint":"Para compartilhar uma estante, selecione dois ou mais músicos e toque em Compartilhada.","part.riser":"Altura do praticável (cm)","arcs.riser":"Praticável para a fileira inteira (cm)","toast.shareNeed":"Selecione pelo menos duas posições para compartilhar uma estante","toast.shared":"{n} músicos agora compartilham uma estante","ana.instOnly":"Instrumentos sem músico","sym.title":"Símbolos","sym.player":"Músico","sym.stand":"Estante","sym.shared":"Estante compartilhada por vários músicos","sym.riser":"Praticável, com a altura em cm","sym.instOnly":"Instrumento sem músico","help.parts":"Cada posição é formada pelo músico, pela estante e, nos instrumentos volumosos, pelo próprio instrumento. No painel Seleção você pode deixar só o instrumento, fazer vários músicos compartilharem uma estante ou retirá-la, e colocar posições isoladas ou fileiras inteiras sobre um praticável.",
 "preset.edit.t":"Editar a predefinição “{name}”","preset.mine":"Predefinição pessoal","preset.reset":"Restaurar as predefinições originais","preset.resetConfirm":"Confirmar: restaurar as predefinições originais","preset.copyOf":"{name} (cópia)",
 "ed.title.form.edit":"Editar formação: {name}","ed.title.form.new":"Nova predefinição de formação",
 "ed.title.lay.edit":"Editar disposição: {name}","ed.title.lay.new":"Nova predefinição de disposição",
@@ -1820,7 +1832,8 @@ I18N.ja = {
 "ana.out.one":"{n} 席がステージからはみ出しています。","ana.out.other":"{n} 席がステージからはみ出しています。",
 "ana.select":"選択","ana.ok":"重なりはありません。すべての席がステージ上にあります。","ana.full":"ステージがかなり混み合っています。55% 以上が占有され、通路が狭くなります。",
 "leg.title":"凡例","leg.note":"赤い破線：重なり。オレンジの線：ステージ外。",
-"part.player":"奏者","part.present":"あり","part.instOnly":"楽器のみ","part.stand":"譜面台","part.own":"専用","part.shared":"共用","part.none":"なし","part.sharedWith":"{list} と譜面台を共用しています。","part.shareHint":"譜面台を共用するには、2人以上の奏者を選択して「共用」を押します。","part.riser":"ひな壇の高さ (cm)","arcs.riser":"列全体のひな壇 (cm)","toast.shareNeed":"譜面台を共用するには2つ以上のポジションを選択してください","toast.shared":"{n}人の奏者が1台の譜面台を共用します","ana.players":"奏者","ana.instOnly":"奏者のいない楽器","ana.stands":"譜面台","ana.risers":"ひな壇上のポジション","sym.title":"記号","sym.player":"奏者","sym.stand":"譜面台","sym.shared":"複数の奏者で共用する譜面台","sym.riser":"ひな壇（高さは cm）","sym.instOnly":"奏者のいない楽器","help.parts":"各ポジションは奏者、譜面台、そして大型楽器では楽器本体で構成されます。「選択」パネルでは、楽器だけを残す、譜面台を複数の奏者で共用する・取り除く、ポジションや列全体をひな壇に載せる、といった設定ができます。",
+"form.empty":"空のステージ","empty.title":"空のステージ","empty.text":"演奏会の編成を選んで奏者を配置するか、「選択」パネルからポジションを1つずつ追加してください。","empty.choose":"編成を選ぶ","empty.resume":"前回の配置図を再開（{count}）","mat.title":"準備するもの","mat.people":"出演奏者","mat.chairs":"椅子","mat.stands":"譜面台","mat.shared.one":"うち共用 {n}","mat.shared.other":"うち共用 {n}","mat.risers":"ひな壇","mat.none":"なし","mat.riserH":"ひな壇 {h} cm","mat.riserV":"{count}、約 {a} m²","mat.line":"{k}：{v}","mat.export":"PNG・SVG の書き出しにリストを含める","mat.empty":"ステージは空です。","mat.note":"ひな壇の面積は高くしたポジションの占有面積の合計です。手持ちのユニットに合わせて切り上げてください。","ed.form.parts":"譜面台・ひな壇・奏者のいない楽器","ed.form.partsHint":"楽器と譜面台番号ごとに保存され、編成をステージに配置するたびに適用されます。","ed.form.partsNone":"設定なし：全員が専用の譜面台を使い、ひな壇には誰も乗りません。","ed.form.partsFromStage":"ステージから取得","ed.form.partsClear":"クリア","parts.shared.one":"共用譜面台 {n}","parts.shared.other":"共用譜面台 {n}","parts.noStand.one":"譜面台なし {n}","parts.noStand.other":"譜面台なし {n}","parts.risers.one":"ひな壇上 {n}","parts.risers.other":"ひな壇上 {n}","parts.np.one":"奏者のいない楽器 {n}","parts.np.other":"奏者のいない楽器 {n}",
+"part.player":"奏者","part.present":"あり","part.instOnly":"楽器のみ","part.stand":"譜面台","part.own":"専用","part.shared":"共用","part.none":"なし","part.sharedWith":"{list} と譜面台を共用しています。","part.shareHint":"譜面台を共用するには、2人以上の奏者を選択して「共用」を押します。","part.riser":"ひな壇の高さ (cm)","arcs.riser":"列全体のひな壇 (cm)","toast.shareNeed":"譜面台を共用するには2つ以上のポジションを選択してください","toast.shared":"{n}人の奏者が1台の譜面台を共用します","ana.instOnly":"奏者のいない楽器","sym.title":"記号","sym.player":"奏者","sym.stand":"譜面台","sym.shared":"複数の奏者で共用する譜面台","sym.riser":"ひな壇（高さは cm）","sym.instOnly":"奏者のいない楽器","help.parts":"各ポジションは奏者、譜面台、そして大型楽器では楽器本体で構成されます。「選択」パネルでは、楽器だけを残す、譜面台を複数の奏者で共用する・取り除く、ポジションや列全体をひな壇に載せる、といった設定ができます。",
 "preset.edit.t":"プリセット「{name}」を編集","preset.mine":"個人用プリセット","preset.reset":"元のプリセットに戻す","preset.resetConfirm":"確認：元のプリセットに戻す","preset.copyOf":"{name}（コピー）",
 "ed.title.form.edit":"編成を編集：{name}","ed.title.form.new":"新しい編成プリセット",
 "ed.title.lay.edit":"配置を編集：{name}","ed.title.lay.new":"新しい配置プリセット",
@@ -2025,7 +2038,8 @@ I18N.zh = {
 "ana.out.one":"{n} 个座位超出舞台。","ana.out.other":"{n} 个座位超出舞台。",
 "ana.select":"选择","ana.ok":"没有重叠：所有座位都在舞台上。","ana.full":"舞台非常拥挤：占地超过 55%，通道会很窄。",
 "leg.title":"图例","leg.note":"红色虚线：重叠。橙色线：超出舞台。",
-"part.player":"乐手","part.present":"在场","part.instOnly":"仅乐器","part.stand":"谱架","part.own":"独用","part.shared":"共用","part.none":"无","part.sharedWith":"与 {list} 共用谱架。","part.shareHint":"要共用谱架，请选择两名或以上乐手，然后点击“共用”。","part.riser":"台阶高度（厘米）","arcs.riser":"整排台阶（厘米）","toast.shareNeed":"请至少选择两个位置来共用谱架","toast.shared":"{n} 名乐手现在共用一个谱架","ana.players":"乐手","ana.instOnly":"无乐手的乐器","ana.stands":"谱架","ana.risers":"台阶上的位置","sym.title":"符号","sym.player":"乐手","sym.stand":"谱架","sym.shared":"多名乐手共用的谱架","sym.riser":"台阶（高度单位为厘米）","sym.instOnly":"无乐手的乐器","help.parts":"每个位置由乐手、谱架以及（大型乐器的）乐器本身组成。在“选择”面板中，可以只保留乐器、让多名乐手共用谱架或去掉谱架，并把单个位置或整排放到台阶上。",
+"form.empty":"空舞台","empty.title":"空舞台","empty.text":"选择一个音乐会编制来安排乐手，或在“选择”面板中逐个添加位置。","empty.choose":"选择编制","empty.resume":"继续上次的平面图（{count}）","mat.title":"需准备的物品","mat.people":"预计乐手","mat.chairs":"椅子","mat.stands":"谱架","mat.shared.one":"其中共用 {n}","mat.shared.other":"其中共用 {n}","mat.risers":"台阶","mat.none":"无","mat.riserH":"{h} 厘米台阶","mat.riserV":"{count}，约 {a} 平方米","mat.line":"{k}：{v}","mat.export":"在 PNG 和 SVG 导出中加入清单","mat.empty":"舞台是空的。","mat.note":"台阶面积为抬高位置占地面积之和，请按现有模块向上取整。","ed.form.parts":"谱架、台阶和无乐手的乐器","ed.form.partsHint":"按乐器和谱架号保存，每次将该编制安排到舞台上时自动应用。","ed.form.partsNone":"未设置：每位乐手各用一个谱架，没有人在台阶上。","ed.form.partsFromStage":"从舞台获取","ed.form.partsClear":"清空","parts.shared.one":"共用谱架 {n} 个","parts.shared.other":"共用谱架 {n} 个","parts.noStand.one":"无谱架位置 {n} 个","parts.noStand.other":"无谱架位置 {n} 个","parts.risers.one":"台阶上位置 {n} 个","parts.risers.other":"台阶上位置 {n} 个","parts.np.one":"无乐手乐器 {n} 件","parts.np.other":"无乐手乐器 {n} 件",
+"part.player":"乐手","part.present":"在场","part.instOnly":"仅乐器","part.stand":"谱架","part.own":"独用","part.shared":"共用","part.none":"无","part.sharedWith":"与 {list} 共用谱架。","part.shareHint":"要共用谱架，请选择两名或以上乐手，然后点击“共用”。","part.riser":"台阶高度（厘米）","arcs.riser":"整排台阶（厘米）","toast.shareNeed":"请至少选择两个位置来共用谱架","toast.shared":"{n} 名乐手现在共用一个谱架","ana.instOnly":"无乐手的乐器","sym.title":"符号","sym.player":"乐手","sym.stand":"谱架","sym.shared":"多名乐手共用的谱架","sym.riser":"台阶（高度单位为厘米）","sym.instOnly":"无乐手的乐器","help.parts":"每个位置由乐手、谱架以及（大型乐器的）乐器本身组成。在“选择”面板中，可以只保留乐器、让多名乐手共用谱架或去掉谱架，并把单个位置或整排放到台阶上。",
 "preset.edit.t":"编辑预设“{name}”","preset.mine":"个人预设","preset.reset":"恢复原始预设","preset.resetConfirm":"确认：恢复原始预设","preset.copyOf":"{name}（副本）",
 "ed.title.form.edit":"编辑编制：{name}","ed.title.form.new":"新建编制预设",
 "ed.title.lay.edit":"编辑排位：{name}","ed.title.lay.new":"新建排位预设",
@@ -2246,7 +2260,7 @@ const lDesc = (id,L)=> (L && L.d!=null) ? L.d : (DEFAULT_LAYOUTS[id] ? t(`lay.${
 const lUse = (id,L)=> (L && L.use!=null) ? L.use : (DEFAULT_LAYOUTS[id] ? t(`lay.${id}.use`) : "");
 const lRefs = (id,L)=> (L && Array.isArray(L.refs)) ? L.refs : (DEFAULT_LAYOUTS[id] ? (t(`lay.${id}.refs`)||[]) : []);
 const sName = S=> S.n || (DEFAULT_STAGES.some(x=>x.id===S.id) ? t("stage."+S.id) : t("misc.untitled"));
-const curFormName = ()=> state.formationId==="custom" || !FORMATIONS[state.formationId] ? t("form.custom") : fName(state.formationId, FORMATIONS[state.formationId]);
+const curFormName = ()=> !state.formationId ? t("form.empty") : state.formationId==="custom" || !FORMATIONS[state.formationId] ? t("form.custom") : fName(state.formationId, FORMATIONS[state.formationId]);
 const getLayout = ()=> LAYOUTS[state.layoutId] || LAYOUTS[Object.keys(LAYOUTS)[0]];
 const getLayoutId = ()=> LAYOUTS[state.layoutId] ? state.layoutId : Object.keys(LAYOUTS)[0];
 
@@ -2257,8 +2271,22 @@ function normFormation(F, id){
   const out = {lay: MIG_LAY[F.lay] || String(F.lay||""), c};
   if(typeof F.n==="string" && F.n.trim()) out.n = F.n.trim().slice(0,80);
   if(typeof F.d==="string") out.d = F.d.slice(0,400);
+  const parts = normParts(F.p); if(parts.length) out.p = parts;
   if(!builtin && !out.n) out.n = t("misc.untitled");
   return out;
+}
+/* Position parts saved with an ensemble, by instrument and stand number:
+   np = instrument without musician, r = riser height in cm, st = own/none stand, g = shared-stand group. */
+function normParts(p){
+  if(!Array.isArray(p)) return [];
+  return p.filter(e=>e && INST[e.k]).slice(0,600).map(e=>{
+    const o = {k:e.k, n:clamp(Math.round(+e.n||1),1,99)}, r = Math.round(+e.r||0);
+    if(e.np) o.np = 1;
+    if(r>0) o.r = Math.min(r,200);
+    if(e.st==="own"||e.st==="none") o.st = e.st;
+    if(e.g!=null && String(e.g)) o.g = String(e.g).slice(0,12);
+    return o;
+  }).filter(o=>Object.keys(o).length>2);
 }
 function normLayout(L, id){
   if(!L || !KINDS.includes(L.kind)) return null;
@@ -2337,8 +2365,8 @@ function libData(){ return {formations:FORMATIONS, layouts:LAYOUTS, stages:STAGE
 let state = {
   stage:{w:18,d:11},
   params:{r0:2.4,gap:.1,maxSpan:150,front:1.2},
-  formationId:"symphonic",
-  counts:{...DEFAULT_FORMATIONS.symphonic.c},
+  formationId:"",
+  counts:C({}),
   layoutId:"concentric",
   podium:{x:9,y:9.8},
   arcs:[], musicians:[], sizes:{}
@@ -2347,7 +2375,8 @@ const ui = {
   sel:new Set(), activeArc:null, mode:"select", space:false,
   showArcs:true, showGrid:true, snapGrid:false, snapArcs:true, showLabels:true,
   view:{s:40,tx:0,ty:0}, drag:null, dropArc:null, userView:false,
-  tab:"formation", showAll:false, dirty:false, analysis:null, edit:null, confirmReset:null
+  tab:"formation", showAll:false, dirty:false, analysis:null, edit:null, confirmReset:null,
+  matExport:(()=>{ try{ return localStorage.getItem("stageplan-mat-export")!=="0"; }catch(e){ return true; } })(), lastProject:null
 };
 const inst = k => Object.assign({}, INST[k], state.sizes[k]||{});
 const mmap = () => new Map(state.musicians.map(m=>[m.id,m]));
@@ -2439,7 +2468,7 @@ function placePerc(list,block,frac=1){
     rowD = Math.max(rowD, 2*hy);
   }
 }
-function generate(){
+function generate(parts){
   const L = getLayout(), P = state.params;
   state.podium = {x:r2(state.stage.w/2), y:r2(state.stage.d - P.front)};
   const pools = {}, musicians = [];
@@ -2484,7 +2513,36 @@ function generate(){
     const o = JSON.parse(best.snap); state.arcs = o.arcs;
     musicians.forEach((m,i)=>{ [m.x,m.y,m.rot,m.arc] = o.ms[i]; });
   }
+  applyParts(parts);
   ui.sel.clear(); ui.activeArc = null; ui.dirty = false;
+}
+function partsOf(ms){
+  const groups = standGroups(), gid = {}; let gi = 0;
+  return ms.map(m=>{
+    const e = {k:m.key, n:m.num};
+    if(m.np) e.np = 1;
+    if(m.riser>0) e.r = m.riser;
+    if(m.sg && groups.has(m.sg)) e.g = gid[m.sg] || (gid[m.sg] = String(++gi));
+    else if((m.st==="own"||m.st==="none") && m.st!==defaultStand(m)) e.st = m.st;
+    return e;
+  }).filter(e=>Object.keys(e).length>2);
+}
+function applyParts(parts){
+  if(!Array.isArray(parts) || !parts.length) return;
+  const by = new Map(state.musicians.map(m=>[m.key+"#"+m.num, m])), gmap = {};
+  for(const e of parts){
+    const m = by.get(e.k+"#"+e.n); if(!m) continue;
+    if(e.np) m.np = true;
+    if(e.r>0) m.riser = e.r;
+    if(e.st) m.st = e.st;
+    if(e.g){ m.sg = gmap[e.g] || (gmap[e.g] = uid()); m.st = "own"; }
+  }
+  tidyStands();
+}
+function partsSummary(parts){
+  const p = parts||[], g = new Set(p.filter(e=>e.g).map(e=>e.g));
+  return [["parts.shared", g.size], ["parts.noStand", p.filter(e=>e.st==="none").length], ["parts.risers", p.filter(e=>e.r>0).length], ["parts.np", p.filter(e=>e.np).length]]
+    .filter(x=>x[1]).map(([k,n])=>tp(k,n)).join(" · ");
 }
 /* Places the members of a row (arc or straight line) evenly along it. */
 function layoutArc(arc,map){
@@ -2585,10 +2643,7 @@ function analyze(){
   let area=0, minY=D;
   ms.forEach((m,i)=>{ const I=inst(m.key); area+=I.w*I.d; polys[i].forEach(p=>minY=Math.min(minY,p[1])); });
   let far=0; ms.forEach(m=>far=Math.max(far,Math.hypot(m.x-state.podium.x,m.y-state.podium.y)));
-  const groups = standGroups();
-  const players = ms.filter(m=>!m.np).length, risers = ms.filter(m=>m.riser>0).length;
-  const stands = ms.filter(m=>standOf(m,groups)==="own").length + groups.size;
-  ui.analysis = {ovl,out,area,depth:D-minY,far,players,stands,risers};
+  ui.analysis = {ovl,out,area,depth:D-minY,far};
 }
 function countOnStage(k){ let n=0; for(const m of state.musicians) if(m.key===k) n++; return n; }
 function labelOf(m){ return {a:instAbbr(m.key), n:(state.counts[m.key]>1 || countOnStage(m.key)>1) ? String(m.num) : ""}; }
@@ -2612,10 +2667,11 @@ function standGroups(){
   for(const [k,v] of g) if(v.length<2) g.delete(k);
   return g;
 }
+const defaultStand = m => (inst(m.key).s||"seat")==="seat" ? "own" : "none";
 function standOf(m, groups){
   if(m.sg && groups.has(m.sg)) return "shared";
   if(m.st==="own"||m.st==="none") return m.st;
-  return (inst(m.key).s||"seat")==="seat" ? "own" : "none";
+  return defaultStand(m);
 }
 /* The shared stand sits between the members' own stand spots, turned to their average orientation. */
 function sharedStandAt(list){
@@ -2813,6 +2869,10 @@ function renderCanvas(){
   document.getElementById("hudZoom").textContent = Math.round(v.s/40*100)+"%";
   const ha = ui.showArcs && ui.activeArc && arcById(ui.activeArc), hint = document.getElementById("arcHint");
   hint.classList.toggle("on", !!ha);
+  const empty = !state.musicians.length, rb = document.getElementById("bResume");
+  document.getElementById("emptySt").classList.toggle("on", empty);
+  rb.hidden = !(empty && ui.lastProject);
+  if(empty && ui.lastProject) rb.textContent = t("empty.resume",{count:tp("count.positions", ui.lastCount)});
   if(ha) document.getElementById("arcHintT").innerHTML = t(ha.shape==="line" ? "hint.line" : "hint.arc", {tag:`<b>${esc(arcTag(state.arcs.indexOf(ha)))}</b>`, count:esc(tp("count.musicians", ha.members.length))});
   document.getElementById("hudSel").textContent = ui.sel.size ? tp("count.selected", ui.sel.size) : t("hud.noSel");
   const badge = document.getElementById("selBadge");
@@ -3172,19 +3232,52 @@ function exportSVG(scalePx){
   const fams = Object.keys(FAM).filter(f=>fam[f]), groups = standGroups();
   /* the plan's symbols are explained only when they appear in it */
   const syms = [["riser", state.musicians.some(x=>x.riser>0)], ["shared", groups.size>0], ["instOnly", state.musicians.some(x=>x.np)]].filter(x=>x[1]).map(x=>x[0]);
-  const legendH = Math.max(2.6, 1.35 + (Math.ceil(fams.length/3)-1)*.42 + (syms.length ? .57 : 0));
-  const vw=W+2*m, vh=D+m+1.2+legendH;
-  let leg=""; const lx=-m+.4, ly=D+1.55;
+  const vw=W+2*m, lx=-m+.4, ly=D+1.55, rows=Math.ceil(fams.length/3);
+  let leg="", y=ly+.8+rows*.42;
   fams.forEach((f,i)=>{
-    const col=i%3, row=Math.floor(i/3), x=lx+col*(vw/3), y=ly+.8+row*.42;
-    leg+=`<rect x="${x}" y="${y-.22}" width=".26" height=".26" rx=".04" fill="${FAM[f].c}"/><text x="${x+.4}" y="${y}" font-size=".26" class="tb-m">${esc(famName(f))} (${fam[f]})</text>`;
+    const col=i%3, row=Math.floor(i/3), x=lx+col*(vw/3), fy=ly+.8+row*.42;
+    leg+=`<rect x="${x}" y="${fy-.22}" width=".26" height=".26" rx=".04" fill="${FAM[f].c}"/><text x="${x+.4}" y="${fy}" font-size=".26" class="tb-m">${esc(famName(f))} (${fam[f]})</text>`;
   });
-  syms.forEach((k,i)=>{
-    const x=lx+i*(vw/3), y=ly+.8+Math.ceil(fams.length/3)*.42+.15;
-    leg+=`<g transform="translate(${x-.07} ${y-.3}) scale(.025)">${SYMS[k]}</g><text x="${x+.62}" y="${y}" font-size=".26" class="tb-m">${esc(t("sym."+k))}</text>`;
-  });
+  if(syms.length){
+    syms.forEach((k,i)=>{
+      const x=lx+i*(vw/3);
+      leg+=`<g transform="translate(${x-.07} ${y-.15}) scale(.025)">${SYMS[k]}</g><text x="${x+.62}" y="${y+.15}" font-size=".26" class="tb-m">${esc(t("sym."+k))}</text>`;
+    });
+    y += .57;
+  }
+  /* checklist in two columns, each item with a box to tick */
+  if(ui.matExport && state.musicians.length){
+    y += .3;
+    leg += `<text x="${lx}" y="${y}" font-size=".3" font-weight="700" class="tb-t">${esc(t("mat.title"))}</text>`;
+    y += .5;
+    const items = matItems().map(([k,v])=>t("mat.line",{k,v})), colW = vw/2 - .6, half = Math.ceil(items.length/2);
+    let cy = [y, y];
+    items.forEach((txt,i)=>{
+      const c = i<half ? 0 : 1, x = lx + c*(vw/2);
+      wrapText(txt, colW-.4, .26).forEach((ln,j)=>{
+        if(!j) leg += `<rect x="${x}" y="${cy[c]-.2}" width=".22" height=".22" rx=".03" fill="none" stroke="#5B6677" stroke-width="1"/>`;
+        leg += `<text x="${x+.36}" y="${cy[c]}" font-size=".26" class="tb-m">${esc(ln)}</text>`;
+        cy[c] += .38;
+      });
+    });
+    y = Math.max(cy[0], cy[1]) - .38;
+  } else y -= .42;
+  const legendH = Math.max(2.6, y + .45 - (D+m));
+  const vh=D+m+1.2+legendH;
   const title = `<text x="${lx}" y="${ly+.15}" font-size=".42" font-weight="700" class="tb-t">${esc(t("export.title",{name:curFormName(), count:tp("count.positions", state.musicians.length)}))}</text><text x="${W+m-.4}" y="${ly+.15}" font-size=".28" text-anchor="end" class="tb-m">${esc(t("export.meta",{layout:lName(getLayoutId(),getLayout()), w:fmt(W), d:fmt(D), date:new Date().toLocaleDateString(loc())}))}</text>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${-m} ${-1.2} ${vw} ${vh}" width="${Math.round(vw*s)}" height="${Math.round(vh*s)}"><style>${EXPORT_CSS}</style><defs>${PLANKS('fill="#E3CEA6"','stroke="#CFB488"')}</defs><rect x="${-m}" y="-1.2" width="${vw}" height="${vh}" fill="#ffffff"/>${stageSVG()}${arcsSVG(true)}${podiumSVG()}${musiciansSVG(true)}${arcsSVG(true,"tags")}${title}${leg}</svg>`;
+}
+/* Splits a line for the exported plan; widths are estimated, CJK characters counting double. */
+function wrapText(str, maxW, fs){
+  const cw = ch => ch.charCodeAt(0)>0x2E80 ? fs : fs*.5, out = [];
+  let line = "", w = 0;
+  for(const word of String(str).split(/(?<=[ ,、，])/)){
+    const ww = [...word].reduce((a,ch)=>a+cw(ch),0);
+    if(line && w+ww>maxW){ out.push(line.trimEnd()); line = ""; w = 0; }
+    line += word; w += ww;
+  }
+  if(line) out.push(line.trimEnd());
+  return out;
 }
 function fileName(ext){
   const base = curFormName().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^\p{L}\p{N}]+/gu,"-").replace(/^-|-$/g,"") || "plan";
@@ -3239,7 +3332,7 @@ function tabFormation(){
   let h = `<div class="sec"><h3>${esc(t("form.title"))}</h3><p class="hint">${esc(t("form.hint"))}</p>`;
   for(const [id,F] of Object.entries(FORMATIONS)){
     const name = fName(id,F);
-    h += `<div class="card" role="button" tabindex="0" data-form="${esc(id)}" aria-pressed="${state.formationId===id}"><span class="ct">${esc(name)}<em>${esc(tp("count.musicians", total(F.c)))}</em>${editBtn("form",id,name)}</span><p>${esc(fDesc(id,F))}</p>${DEFAULT_FORMATIONS[id]?"":`<span class="badge mine">${esc(t("preset.mine"))}</span>`}</div>`;
+    h += `<div class="card" role="button" tabindex="0" data-form="${esc(id)}" aria-pressed="${state.formationId===id}"><span class="ct">${esc(name)}<em>${esc(tp("count.musicians", total(F.c)))}</em>${editBtn("form",id,name)}</span><p>${esc(fDesc(id,F))}</p>${F.p?`<p class="uso">${esc(partsSummary(F.p))}</p>`:""}${DEFAULT_FORMATIONS[id]?"":`<span class="badge mine">${esc(t("preset.mine"))}</span>`}</div>`;
   }
   if(state.formationId==="custom") h += `<div class="card" aria-pressed="true"><span class="ct">${esc(t("form.custom"))}<em>${esc(tp("count.musicians", total(state.counts)))}</em></span><p>${esc(t("form.custom.d"))}</p></div>`;
   h += `<div class="btnrow"><button class="btn" data-act="newform">${esc(t("form.saveCurrent"))}</button></div>${resetBtn("form")}`;
@@ -3389,10 +3482,6 @@ function anaHTML(){
   const occ = A.area/(S.w*S.d)*100;
   let h = `<h3>${esc(t("ana.title"))}</h3><dl class="stats">
     <dt>${esc(t("ana.positions"))}</dt><dd>${n}</dd>
-    <dt>${esc(t("ana.players"))}</dt><dd>${A.players}</dd>
-    ${n>A.players?`<dt>${esc(t("ana.instOnly"))}</dt><dd>${n-A.players}</dd>`:""}
-    <dt>${esc(t("ana.stands"))}</dt><dd>${A.stands}</dd>
-    ${A.risers?`<dt>${esc(t("ana.risers"))}</dt><dd>${A.risers}</dd>`:""}
     <dt>${esc(t("ana.stage"))}</dt><dd>${fmt(S.w*S.d,1)} m²</dd>
     <dt>${esc(t("ana.area"))}</dt><dd>${fmt(A.area,1)} m² (${fmt(occ,0)}%)</dd>
     <dt>${esc(t("ana.per"))}</dt><dd>${n?fmt(S.w*S.d/n,2):"–"} m²</dd>
@@ -3404,6 +3493,35 @@ function anaHTML(){
   if(nOut) h += `<div class="warn mid"><span><b>${esc(tp("ana.out", nOut))}</b></span><button class="linkbtn" data-act="selout">${esc(t("ana.select"))}</button></div>`;
   if(!nOv && !nOut && n) h += `<div class="warn good"><span>${esc(t("ana.ok"))}</span></div>`;
   if(n && occ>55) h += `<div class="warn mid"><span>${esc(t("ana.full"))}</span></div>`;
+  return h;
+}
+/* What the stage crew has to bring: musicians, chairs, stands, risers by height and instruments set up without a musician. */
+function materials(){
+  const ms = state.musicians, groups = standGroups(), rz = {}, np = {};
+  const chairs = ms.filter(m=>{ const k=inst(m.key).s||"seat"; return k==="seat"||k==="harp"; }).length;
+  const own = ms.filter(m=>standOf(m,groups)==="own").length;
+  ms.forEach(m=>{
+    if(m.riser>0){ const I=inst(m.key), r=rz[m.riser]||(rz[m.riser]={n:0,a:0}); r.n++; r.a+=I.w*I.d; }
+    if(m.np) np[m.key]=(np[m.key]||0)+1;
+  });
+  return {people:ms.filter(m=>!m.np).length, chairs, stands:own+groups.size, shared:groups.size,
+    risers:Object.keys(rz).map(Number).sort((a,b)=>a-b).map(h=>({h, n:rz[h].n, a:rz[h].a})), np};
+}
+function matItems(){
+  const M = materials(), out = [[t("mat.people"), String(M.people)], [t("mat.chairs"), String(M.chairs)],
+    [t("mat.stands"), M.shared ? `${M.stands} (${tp("mat.shared", M.shared)})` : String(M.stands)]];
+  if(M.risers.length) M.risers.forEach(r=>out.push([t("mat.riserH",{h:r.h}), t("mat.riserV",{count:tp("count.positions", r.n), a:fmt(r.a,1)})]));
+  else out.push([t("mat.risers"), t("mat.none")]);
+  const np = Object.entries(M.np);
+  if(np.length) out.push([t("ana.instOnly"), np.map(([k,n])=>instAbbr(k)+(n>1?` ×${n}`:"")).join(", ")]);
+  return out;
+}
+function matHTML(){
+  let h = `<h3>${esc(t("mat.title"))}</h3>`;
+  if(!state.musicians.length) return h + `<p class="hint">${esc(t("mat.empty"))}</p>`;
+  h += `<dl class="stats">${matItems().map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>`;
+  if(state.musicians.some(m=>m.riser>0)) h += `<p class="hint" style="margin-top:6px">${esc(t("mat.note"))}</p>`;
+  h += `<label class="toggle" style="margin-top:8px"><input type="checkbox" data-tog="matExport" ${ui.matExport?"checked":""}> ${esc(t("mat.export"))}</label>`;
   return h;
 }
 /* Symbol keys, drawn in a 24×16 box: used by the legend panel and by the exported plan. */
@@ -3422,7 +3540,7 @@ function legendHTML(){
 }
 function renderRight(){
   const st = rightPane.scrollTop;
-  rightPane.innerHTML = `<div class="drawerhead"><span>${esc(t("pane.right"))}</span><button class="ebtn" data-close="right" title="${esc(t("pane.close"))}" aria-label="${esc(t("pane.close"))}"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l10 10M15 5 5 15"/></svg></button></div><div class="tabpane"><div class="sec" id="selSec">${selHTML()}</div><div class="sec" id="arcSec">${arcsHTML()}</div><div class="sec" id="anaSec">${anaHTML()}</div><div class="sec">${legendHTML()}</div></div>`;
+  rightPane.innerHTML = `<div class="drawerhead"><span>${esc(t("pane.right"))}</span><button class="ebtn" data-close="right" title="${esc(t("pane.close"))}" aria-label="${esc(t("pane.close"))}"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l10 10M15 5 5 15"/></svg></button></div><div class="tabpane"><div class="sec" id="selSec">${selHTML()}</div><div class="sec" id="arcSec">${arcsHTML()}</div><div class="sec" id="anaSec">${anaHTML()}</div><div class="sec">${matHTML()}</div><div class="sec">${legendHTML()}</div></div>`;
   rightPane.scrollTop = st;
 }
 function renderAll(){ renderCanvas(); renderTop(); renderLeft(); renderRight(); }
@@ -3451,11 +3569,24 @@ window.matchMedia("(min-width:1280px)").addEventListener("change", closePanes);
 let toastT=null;
 function toast(msg){ const el=document.getElementById("toast"); el.textContent=msg; el.classList.add("on"); clearTimeout(toastT); toastT=setTimeout(()=>el.classList.remove("on"),2600); }
 document.querySelector(".tabs").addEventListener("click",e=>{ const b=e.target.closest("[data-tab]"); if(!b) return; ui.tab=b.dataset.tab; renderTop(); leftPane.parentElement.scrollTop=0; renderLeft(); });
-function doGenerate(){
+/* Regenerating keeps stands, risers and instruments without musician by instrument and number, unless an ensemble brings its own. */
+function doGenerate(parts){
   if(isDrawer(document.querySelector("aside.left"))) closePanes();
-  generate(); commit();
+  generate(parts===undefined ? partsOf(state.musicians) : parts); commit();
   const A=ui.analysis;
   toast(t("toast.generated",{positions:tp("count.positions", state.musicians.length), rows:tp("count.rows", state.arcs.length)}) + (A.ovl.size ? " " + tp("toast.toFix", A.ovl.size) : ""));
+}
+function startEmpty(){
+  state.musicians=[]; state.arcs=[]; state.counts=C({}); state.formationId="";
+  state.podium={x:r2(state.stage.w/2), y:r2(state.stage.d-state.params.front)};
+  ui.sel.clear(); ui.activeArc=null; ui.dirty=false;
+}
+const resumeHooks = [];
+function resumeLast(){
+  if(!ui.lastProject) return;
+  restore(ui.lastProject); ui.sel.clear();
+  resumeHooks.forEach(fn=>{ try{ fn(); }catch(e){} });
+  commit(); fit(); toast(t("toast.resumed"));
 }
 function setStage(w,d){
   w=clamp(+w||state.stage.w,4,60); d=clamp(+d||state.stage.d,3,40);
@@ -3472,7 +3603,7 @@ leftPane.addEventListener("click",e=>{
   const rs=e.target.closest("[data-reset]");
   if(rs){ resetPresets(rs.dataset.reset); return; }
   const f=e.target.closest("[data-form]");
-  if(f){ const F=FORMATIONS[f.dataset.form]; if(!F) return; state.formationId=f.dataset.form; state.counts={...F.c}; if(LAYOUTS[F.lay]) state.layoutId=F.lay; doGenerate(); return; }
+  if(f){ const F=FORMATIONS[f.dataset.form]; if(!F) return; state.formationId=f.dataset.form; state.counts={...F.c}; if(LAYOUTS[F.lay]) state.layoutId=F.lay; doGenerate(F.p||[]); return; }
   if(e.target.closest("summary") || e.target.closest("details")) return;
   const l=e.target.closest("[data-lay]");
   if(l){ state.layoutId=l.dataset.lay; doGenerate(); return; }
@@ -3539,7 +3670,11 @@ rightPane.addEventListener("input",e=>{
 });
 rightPane.addEventListener("change",e=>{
   const tg=e.target;
-  if(tg.dataset.tog){ ui[tg.dataset.tog]=tg.checked; renderTop(); requestRender(); return; }
+  if(tg.dataset.tog){
+    ui[tg.dataset.tog]=tg.checked;
+    if(tg.dataset.tog==="matExport"){ try{ localStorage.setItem("stageplan-mat-export", tg.checked?"1":"0"); }catch(e){} }
+    renderTop(); requestRender(); return;
+  }
   if(tg.dataset.arcp){
     const a=arcById(ui.activeArc); if(!a) return; const v=+tg.value; if(isNaN(v)) return;
     const k=tg.dataset.arcp;
@@ -3570,6 +3705,8 @@ rightPane.addEventListener("change",e=>{
 /* ============================== TOOLBAR & KEYBOARD ============================== */
 const on=(id,fn)=>document.getElementById(id).addEventListener("click",fn);
 on("bUndo",undo); on("bRedo",redo);
+on("bResume",resumeLast);
+on("bChoose",()=>{ ui.tab="formation"; renderTop(); leftPane.parentElement.scrollTop=0; renderLeft(); if(isDrawer(document.querySelector("aside.left"))) togglePane("left", true); });
 on("bSel",()=>{ ui.mode="select"; renderTop(); });
 on("bPan",()=>{ ui.mode="pan"; renderTop(); });
 on("bFit",fit);
@@ -3643,7 +3780,7 @@ function openEditor(type, id, fromId){
   let data;
   if(type==="form"){
     const F = id && FORMATIONS[id];
-    data = F ? {n:fName(id,F), d:fDesc(id,F), lay:F.lay, c:{...F.c}} : {n:"", d:"", lay:getLayoutId(), c:{...state.counts}};
+    data = F ? {n:fName(id,F), d:fDesc(id,F), lay:F.lay, c:{...F.c}, p:clone(F.p||[])} : {n:"", d:"", lay:getLayoutId(), c:{...state.counts}, p:partsOf(state.musicians)};
   }
   if(type==="lay"){
     const sid = fromId || id, L = sid && LAYOUTS[sid];
@@ -3673,6 +3810,8 @@ function renderEditor(){
       h += `<div><div class="famhead"><i style="background:${FAM[f].c}"></i>${esc(famName(f))}<span>${keys.reduce((s,k)=>s+D.c[k],0)}</span></div>${keys.map(k=>countRow(k, D.c[k], "estep", "ec")).join("")}</div>`;
     }
     h += `</div></div>`;
+    h += `<div class="ed-sec"><h4>${esc(t("ed.form.parts"))}<button class="btn" data-ea="partsstage">${esc(t("ed.form.partsFromStage"))}</button><button class="btn" data-ea="partsclear">${esc(t("ed.form.partsClear"))}</button></h4>
+      <p>${esc(partsSummary(D.p) || t("ed.form.partsNone"))}</p><p class="hint">${esc(t("ed.form.partsHint"))}</p></div>`;
   }
   if(E.type==="lay"){
     const one = D.kind==="wedge"||D.kind==="single";
@@ -3729,7 +3868,7 @@ function edCommit(asNew){
   const id = (!E.id || asNew) ? "u"+uid() : E.id;
   const builtin = !asNew && E.id;
   if(E.type==="form"){
-    const F = normFormation({n:D.n, d:D.d, lay:D.lay, c:D.c}, id);
+    const F = normFormation({n:D.n, d:D.d, lay:D.lay, c:D.c, p:D.p}, id);
     if(!total(F.c)){ E.err=t("ed.err.empty"); renderEditor(); return; }
     /* keep built-in texts translatable when they were not changed */
     if(builtin && DEFAULT_FORMATIONS[id]){ if(F.n===t(`form.${id}.n`)) delete F.n; if(F.d===t(`form.${id}.d`)) delete F.d; }
@@ -3805,11 +3944,13 @@ edBox.addEventListener("click",e=>{
     case "saveas": edCommit(true); return;
     case "del": edDelete(); return;
     case "orig": {
-      if(E.type==="form"){ const F=DEFAULT_FORMATIONS[E.id]; E.data={n:t(`form.${E.id}.n`), d:t(`form.${E.id}.d`), lay:F.lay, c:{...F.c}}; }
+      if(E.type==="form"){ const F=DEFAULT_FORMATIONS[E.id]; E.data={n:t(`form.${E.id}.n`), d:t(`form.${E.id}.d`), lay:F.lay, c:{...F.c}, p:[]}; }
       if(E.type==="lay"){ const L=DEFAULT_LAYOUTS[E.id]; E.data={n:t(`lay.${E.id}.n`), kind:L.kind, d:t(`lay.${E.id}.d`), use:t(`lay.${E.id}.use`), refsText:(t(`lay.${E.id}.refs`)||[]).join("\n"), span:L.span, bands:(L.bands||[L.order]).map(x=>[...x])}; }
       if(E.type==="stage"){ const S=DEFAULT_STAGES.find(x=>x.id===E.id); E.data={n:t("stage."+E.id), w:S.w, d:S.d}; }
       E.chip=null; break; }
     case "fromstage": D.c={...state.counts}; break;
+    case "partsstage": D.p=partsOf(state.musicians); break;
+    case "partsclear": D.p=[]; break;
     case "zero": Object.keys(D.c).forEach(k=>D.c[k]=0); break;
     case "stagecur": D.w=state.stage.w; D.d=state.stage.d; break;
     case "addband": D.bands.push([]); break;
@@ -3916,18 +4057,16 @@ document.getElementById("langSel").addEventListener("change", e=>setLang(e.targe
 (function init(){
   applyStatic();
   loadLib();
-  let loaded=false;
   try{
     const s = localStorage.getItem(STORE) || localStorage.getItem(OLD_STORE);
-    if(s){ const o=JSON.parse(s); if(validProject(o)){ restore(s); loaded=true; } }
+    if(s){ const o=JSON.parse(s); if(validProject(o) && o.musicians.length){ ui.lastProject=s; ui.lastCount=o.musicians.length; } }
   }catch(e){}
-  if(!loaded) generate();
+  startEmpty();
   hist.stack=[snap()]; hist.i=0;
   renderAll();
   requestAnimationFrame(fit);
   updInstall();
   setTimeout(maybeShowBar, 1500);
-  if(loaded) setTimeout(()=>toast(t("toast.resumed")),300);
 })();
 
 </script>
