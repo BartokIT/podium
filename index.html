@@ -10,8 +10,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Stage Plan">
-<title>Podium - seating plans for wind orchestras and bands</title>
+<meta name="apple-mobile-web-app-title" content="Podium">
+<title>Podium</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
@@ -448,9 +448,9 @@ kbd{ font-family:var(--ui); font-size:12px; border:1px solid var(--line); border
 /* ============================== TRANSLATIONS ============================== */
 const I18N = {};
 I18N.en = {
-"app.name":"Stage Plan",
+"app.name":"Podium",
 "app.tagline":"Seating plans for wind orchestras and concert bands",
-"app.title":"Stage Plan – seating for wind orchestras and bands",
+"app.title":"Podium – seating for wind orchestras and bands",
 "tb.aria":"Tools",
 "tb.undo":"Undo","tb.undo.t":"Undo (Ctrl+Z)",
 "tb.redo":"Redo","tb.redo.t":"Redo (Ctrl+Y)",
@@ -557,7 +557,7 @@ I18N.en = {
 "ed.err.name":"Give the preset a name.","ed.err.empty":"The instrumentation is empty: add at least one instrument.","ed.err.noInst":"Add at least one instrument.",
 "ed.err.lastForm":"At least one ensemble must remain.","ed.err.lastLay":"At least one layout must remain.","ed.err.lastStage":"At least one stage must remain.",
 "kind.arc":"Concentric arcs by band","kind.block":"Straight rows by band","kind.wedge":"Sectors by family","kind.single":"Single semicircle",
-"export.title":"{name}, {count}","export.meta":"{layout}. Stage {w} × {d} m. {date}","file.prefix":"stage-plan",
+"export.title":"{name}, {count}","export.meta":"{layout}. Stage {w} × {d} m. {date}","file.prefix":"podium",
 "toast.generated":"Layout generated: {positions} on {rows}.","toast.toFix.one":"{n} seat to fix.","toast.toFix.other":"{n} seats to fix.",
 "toast.deleted.one":"{n} seat deleted","toast.deleted.other":"{n} seats deleted",
 "toast.added":"{name} added: drag it where you want it",
@@ -569,10 +569,10 @@ I18N.en = {
 "toast.snapOn":"Snapping to the 10 cm grid is on","toast.snapOff":"Grid snapping is off",
 "toast.saved":"File saved","toast.saveCancelled":"Save cancelled","toast.savePending":"A save is already waiting for confirmation","toast.saveUnavailable":"Saving files is not available in this view","toast.download":"Download started",
 "toast.pngFail":"Could not create the PNG","toast.pngFail2":"Could not create the PNG in this view: use the SVG export",
-"toast.opened":"Project opened","toast.invalid":"The file is not a valid Stage Plan project","toast.resumed":"Resumed your previous session",
+"toast.opened":"Project opened","toast.invalid":"The file is not a valid Podium project","toast.resumed":"Resumed your previous session",
 "toast.presetsReset":"Original presets restored","toast.presetUpdated":"Preset updated","toast.presetCreated":"Preset created","toast.presetDeleted":"Preset deleted",
 "toast.installed":"App installed",
-"inst.title":"Install Stage Plan","inst.bar":"Open it from your home screen like an app, full screen.","inst.go":"Install","inst.later":"Not now",
+"inst.title":"Install Podium","inst.bar":"Open it from your home screen like an app, full screen.","inst.go":"Install","inst.later":"Not now",
 "inst.intro":"Once added to the home screen, the plan opens with one tap, full screen, like any other app.",
 "inst.frame":"If you are viewing this page inside the Claude app or a preview, first open it in your browser (Safari on iPhone, Chrome on Android) from its link, then follow the steps below.",
 "inst.ios":"iPhone and iPad (Safari)","inst.android":"Android (Chrome)","inst.desktop":"Computer (Chrome or Edge)",
@@ -660,9 +660,9 @@ I18N.en = {
 };
 
 I18N.it = {
-"app.name":"Pianta di scena",
+"app.name":"Podium",
 "app.tagline":"Disposizione per orchestra di fiati e banda",
-"app.title":"Pianta di scena – orchestra di fiati e banda",
+"app.title":"Podium – orchestra di fiati e banda",
 "tb.aria":"Strumenti",
 "tb.undo":"Annulla","tb.undo.t":"Annulla (Ctrl+Z)",
 "tb.redo":"Ripeti","tb.redo.t":"Ripeti (Ctrl+Y)",
@@ -769,7 +769,7 @@ I18N.it = {
 "ed.err.name":"Dai un nome al preset.","ed.err.empty":"L’organico è vuoto: aggiungi almeno uno strumento.","ed.err.noInst":"Inserisci almeno uno strumento.",
 "ed.err.lastForm":"Deve restare almeno una formazione.","ed.err.lastLay":"Deve restare almeno una disposizione.","ed.err.lastStage":"Deve restare almeno un palco.",
 "kind.arc":"Archi concentrici per fasce","kind.block":"File rettilinee per fasce","kind.wedge":"Settori a spicchio per famiglie","kind.single":"Semicerchio unico",
-"export.title":"{name}, {count}","export.meta":"{layout}. Palco {w} × {d} m. {date}","file.prefix":"pianta",
+"export.title":"{name}, {count}","export.meta":"{layout}. Palco {w} × {d} m. {date}","file.prefix":"podium",
 "toast.generated":"Disposizione generata: {positions} su {rows}.","toast.toFix.one":"{n} seduta da sistemare.","toast.toFix.other":"{n} sedute da sistemare.",
 "toast.deleted.one":"{n} seduta eliminata","toast.deleted.other":"{n} sedute eliminate",
 "toast.added":"{name} aggiunto: trascinalo nella posizione voluta",
@@ -781,10 +781,10 @@ I18N.it = {
 "toast.snapOn":"Aggancio alla griglia di 10 cm attivo","toast.snapOff":"Aggancio alla griglia disattivato",
 "toast.saved":"File salvato","toast.saveCancelled":"Salvataggio annullato","toast.savePending":"Un salvataggio è già in attesa di conferma","toast.saveUnavailable":"Salvataggio di file non disponibile in questa vista","toast.download":"Download avviato",
 "toast.pngFail":"Impossibile generare il PNG","toast.pngFail2":"Impossibile generare il PNG in questa vista: usa l’esportazione SVG",
-"toast.opened":"Progetto aperto","toast.invalid":"Il file non è un progetto valido di Pianta di scena","toast.resumed":"Ripreso il lavoro della sessione precedente",
+"toast.opened":"Progetto aperto","toast.invalid":"Il file non è un progetto valido di Podium","toast.resumed":"Ripreso il lavoro della sessione precedente",
 "toast.presetsReset":"Preset originali ripristinati","toast.presetUpdated":"Preset aggiornato","toast.presetCreated":"Preset creato","toast.presetDeleted":"Preset eliminato",
 "toast.installed":"App installata",
-"inst.title":"Installa Pianta di scena","inst.bar":"Aprila dalla schermata Home come un’app, a schermo intero.","inst.go":"Installa","inst.later":"Non ora",
+"inst.title":"Installa Podium","inst.bar":"Aprila dalla schermata Home come un’app, a schermo intero.","inst.go":"Installa","inst.later":"Non ora",
 "inst.intro":"Una volta aggiunta alla schermata Home, la pianta si apre con un tocco, a tutto schermo, come le altre app.",
 "inst.frame":"Se stai guardando la pagina dentro l’app Claude o in un’anteprima, aprila prima nel browser (Safari su iPhone, Chrome su Android) dal suo link, poi segui i passaggi qui sotto.",
 "inst.ios":"iPhone e iPad (Safari)","inst.android":"Android (Chrome)","inst.desktop":"Computer (Chrome o Edge)",
@@ -872,9 +872,9 @@ I18N.it = {
 };
 
 I18N.es = {
-"app.name":"Plano de escena",
+"app.name":"Podium",
 "app.tagline":"Disposición para orquesta de vientos y banda",
-"app.title":"Plano de escena – orquesta de vientos y banda",
+"app.title":"Podium – orquesta de vientos y banda",
 "tb.aria":"Herramientas",
 "tb.undo":"Deshacer","tb.undo.t":"Deshacer (Ctrl+Z)",
 "tb.redo":"Rehacer","tb.redo.t":"Rehacer (Ctrl+Y)",
@@ -981,7 +981,7 @@ I18N.es = {
 "ed.err.name":"Ponle un nombre al preajuste.","ed.err.empty":"La plantilla está vacía: añade al menos un instrumento.","ed.err.noInst":"Añade al menos un instrumento.",
 "ed.err.lastForm":"Debe quedar al menos una formación.","ed.err.lastLay":"Debe quedar al menos una disposición.","ed.err.lastStage":"Debe quedar al menos un escenario.",
 "kind.arc":"Arcos concéntricos por franjas","kind.block":"Filas rectas por franjas","kind.wedge":"Sectores por familias","kind.single":"Semicírculo único",
-"export.title":"{name}, {count}","export.meta":"{layout}. Escenario {w} × {d} m. {date}","file.prefix":"plano",
+"export.title":"{name}, {count}","export.meta":"{layout}. Escenario {w} × {d} m. {date}","file.prefix":"podium",
 "toast.generated":"Disposición generada: {positions} en {rows}.","toast.toFix.one":"{n} puesto por corregir.","toast.toFix.other":"{n} puestos por corregir.",
 "toast.deleted.one":"{n} puesto eliminado","toast.deleted.other":"{n} puestos eliminados",
 "toast.added":"{name} añadido: arrástralo a la posición deseada",
@@ -993,10 +993,10 @@ I18N.es = {
 "toast.snapOn":"Ajuste a la cuadrícula de 10 cm activado","toast.snapOff":"Ajuste a la cuadrícula desactivado",
 "toast.saved":"Archivo guardado","toast.saveCancelled":"Guardado cancelado","toast.savePending":"Ya hay un guardado esperando confirmación","toast.saveUnavailable":"Guardar archivos no está disponible en esta vista","toast.download":"Descarga iniciada",
 "toast.pngFail":"No se pudo crear el PNG","toast.pngFail2":"No se pudo crear el PNG en esta vista: usa la exportación SVG",
-"toast.opened":"Proyecto abierto","toast.invalid":"El archivo no es un proyecto válido de Plano de escena","toast.resumed":"Se ha recuperado la sesión anterior",
+"toast.opened":"Proyecto abierto","toast.invalid":"El archivo no es un proyecto válido de Podium","toast.resumed":"Se ha recuperado la sesión anterior",
 "toast.presetsReset":"Preajustes originales restaurados","toast.presetUpdated":"Preajuste actualizado","toast.presetCreated":"Preajuste creado","toast.presetDeleted":"Preajuste eliminado",
 "toast.installed":"App instalada",
-"inst.title":"Instalar Plano de escena","inst.bar":"Ábrela desde la pantalla de inicio como una app, a pantalla completa.","inst.go":"Instalar","inst.later":"Ahora no",
+"inst.title":"Instalar Podium","inst.bar":"Ábrela desde la pantalla de inicio como una app, a pantalla completa.","inst.go":"Instalar","inst.later":"Ahora no",
 "inst.intro":"Una vez añadida a la pantalla de inicio, el plano se abre con un toque, a pantalla completa, como las demás apps.",
 "inst.frame":"Si ves esta página dentro de la app de Claude o en una vista previa, ábrela antes en el navegador (Safari en iPhone, Chrome en Android) desde su enlace y sigue estos pasos.",
 "inst.ios":"iPhone y iPad (Safari)","inst.android":"Android (Chrome)","inst.desktop":"Ordenador (Chrome o Edge)",
@@ -1084,9 +1084,9 @@ I18N.es = {
 };
 
 I18N.fr = {
-"app.name":"Plan de scène",
+"app.name":"Podium",
 "app.tagline":"Placement pour orchestre d’harmonie et orchestre à vent",
-"app.title":"Plan de scène – orchestre d’harmonie et orchestre à vent",
+"app.title":"Podium – orchestre d’harmonie et orchestre à vent",
 "tb.aria":"Outils",
 "tb.undo":"Annuler","tb.undo.t":"Annuler (Ctrl+Z)",
 "tb.redo":"Rétablir","tb.redo.t":"Rétablir (Ctrl+Y)",
@@ -1193,7 +1193,7 @@ I18N.fr = {
 "ed.err.name":"Donnez un nom au préréglage.","ed.err.empty":"L’effectif est vide : ajoutez au moins un instrument.","ed.err.noInst":"Ajoutez au moins un instrument.",
 "ed.err.lastForm":"Il doit rester au moins une formation.","ed.err.lastLay":"Il doit rester au moins un placement.","ed.err.lastStage":"Il doit rester au moins une scène.",
 "kind.arc":"Arcs concentriques par bandes","kind.block":"Rangs droits par bandes","kind.wedge":"Secteurs par familles","kind.single":"Demi-cercle unique",
-"export.title":"{name}, {count}","export.meta":"{layout}. Scène {w} × {d} m. {date}","file.prefix":"plan-de-scene",
+"export.title":"{name}, {count}","export.meta":"{layout}. Scène {w} × {d} m. {date}","file.prefix":"podium",
 "toast.generated":"Placement généré : {positions} sur {rows}.","toast.toFix.one":"{n} place à corriger.","toast.toFix.other":"{n} places à corriger.",
 "toast.deleted.one":"{n} place supprimée","toast.deleted.other":"{n} places supprimées",
 "toast.added":"{name} ajouté : faites-le glisser à la position voulue",
@@ -1205,10 +1205,10 @@ I18N.fr = {
 "toast.snapOn":"Alignement sur la grille de 10 cm activé","toast.snapOff":"Alignement sur la grille désactivé",
 "toast.saved":"Fichier enregistré","toast.saveCancelled":"Enregistrement annulé","toast.savePending":"Un enregistrement attend déjà une confirmation","toast.saveUnavailable":"L’enregistrement de fichiers n’est pas disponible dans cette vue","toast.download":"Téléchargement lancé",
 "toast.pngFail":"Impossible de créer le PNG","toast.pngFail2":"Impossible de créer le PNG dans cette vue : utilisez l’export SVG",
-"toast.opened":"Projet ouvert","toast.invalid":"Le fichier n’est pas un projet Plan de scène valide","toast.resumed":"Session précédente reprise",
+"toast.opened":"Projet ouvert","toast.invalid":"Le fichier n’est pas un projet Podium valide","toast.resumed":"Session précédente reprise",
 "toast.presetsReset":"Préréglages d’origine rétablis","toast.presetUpdated":"Préréglage mis à jour","toast.presetCreated":"Préréglage créé","toast.presetDeleted":"Préréglage supprimé",
 "toast.installed":"Application installée",
-"inst.title":"Installer Plan de scène","inst.bar":"Ouvrez-la depuis l’écran d’accueil comme une application, en plein écran.","inst.go":"Installer","inst.later":"Plus tard",
+"inst.title":"Installer Podium","inst.bar":"Ouvrez-la depuis l’écran d’accueil comme une application, en plein écran.","inst.go":"Installer","inst.later":"Plus tard",
 "inst.intro":"Une fois ajouté à l’écran d’accueil, le plan s’ouvre d’un geste, en plein écran, comme les autres applications.",
 "inst.frame":"Si vous consultez cette page dans l’application Claude ou dans un aperçu, ouvrez-la d’abord dans votre navigateur (Safari sur iPhone, Chrome sur Android) depuis son lien, puis suivez les étapes ci-dessous.",
 "inst.ios":"iPhone et iPad (Safari)","inst.android":"Android (Chrome)","inst.desktop":"Ordinateur (Chrome ou Edge)",
@@ -1296,9 +1296,9 @@ I18N.fr = {
 };
 
 I18N.de = {
-"app.name":"Bühnenplan",
+"app.name":"Podium",
 "app.tagline":"Sitzordnung für Blasorchester und Musikkapellen",
-"app.title":"Bühnenplan – Sitzordnung für Blasorchester",
+"app.title":"Podium – Sitzordnung für Blasorchester",
 "tb.aria":"Werkzeuge",
 "tb.undo":"Rückgängig","tb.undo.t":"Rückgängig (Strg+Z)",
 "tb.redo":"Wiederholen","tb.redo.t":"Wiederholen (Strg+Y)",
@@ -1405,7 +1405,7 @@ I18N.de = {
 "ed.err.name":"Geben Sie der Vorlage einen Namen.","ed.err.empty":"Die Besetzung ist leer: Fügen Sie mindestens ein Instrument hinzu.","ed.err.noInst":"Fügen Sie mindestens ein Instrument hinzu.",
 "ed.err.lastForm":"Mindestens eine Besetzung muss bleiben.","ed.err.lastLay":"Mindestens eine Aufstellung muss bleiben.","ed.err.lastStage":"Mindestens eine Bühne muss bleiben.",
 "kind.arc":"Konzentrische Bögen nach Zonen","kind.block":"Gerade Reihen nach Zonen","kind.wedge":"Sektoren nach Familien","kind.single":"Einzelner Halbkreis",
-"export.title":"{name}, {count}","export.meta":"{layout}. Bühne {w} × {d} m. {date}","file.prefix":"buehnenplan",
+"export.title":"{name}, {count}","export.meta":"{layout}. Bühne {w} × {d} m. {date}","file.prefix":"podium",
 "toast.generated":"Aufstellung erzeugt: {positions} auf {rows}.","toast.toFix.one":"{n} Platz ist zu korrigieren.","toast.toFix.other":"{n} Plätze sind zu korrigieren.",
 "toast.deleted.one":"{n} Platz gelöscht","toast.deleted.other":"{n} Plätze gelöscht",
 "toast.added":"{name} hinzugefügt: an die gewünschte Stelle ziehen",
@@ -1417,10 +1417,10 @@ I18N.de = {
 "toast.snapOn":"Ausrichtung am 10-cm-Raster aktiv","toast.snapOff":"Rasterausrichtung aus",
 "toast.saved":"Datei gespeichert","toast.saveCancelled":"Speichern abgebrochen","toast.savePending":"Ein Speichervorgang wartet bereits auf Bestätigung","toast.saveUnavailable":"Dateien speichern ist in dieser Ansicht nicht möglich","toast.download":"Download gestartet",
 "toast.pngFail":"PNG konnte nicht erstellt werden","toast.pngFail2":"PNG kann in dieser Ansicht nicht erstellt werden: Verwenden Sie den SVG-Export",
-"toast.opened":"Projekt geöffnet","toast.invalid":"Die Datei ist kein gültiges Bühnenplan-Projekt","toast.resumed":"Vorige Sitzung wiederhergestellt",
+"toast.opened":"Projekt geöffnet","toast.invalid":"Die Datei ist kein gültiges Podium-Projekt","toast.resumed":"Vorige Sitzung wiederhergestellt",
 "toast.presetsReset":"Ursprüngliche Vorlagen wiederhergestellt","toast.presetUpdated":"Vorlage aktualisiert","toast.presetCreated":"Vorlage angelegt","toast.presetDeleted":"Vorlage gelöscht",
 "toast.installed":"App installiert",
-"inst.title":"Bühnenplan installieren","inst.bar":"Vom Startbildschirm öffnen wie eine App, im Vollbild.","inst.go":"Installieren","inst.later":"Später",
+"inst.title":"Podium installieren","inst.bar":"Vom Startbildschirm öffnen wie eine App, im Vollbild.","inst.go":"Installieren","inst.later":"Später",
 "inst.intro":"Nach dem Hinzufügen zum Startbildschirm öffnet sich der Plan mit einem Tippen im Vollbild, wie andere Apps.",
 "inst.frame":"Wenn Sie diese Seite in der Claude-App oder einer Vorschau sehen, öffnen Sie sie zuerst über ihren Link im Browser (Safari auf dem iPhone, Chrome auf Android) und folgen dann den Schritten unten.",
 "inst.ios":"iPhone und iPad (Safari)","inst.android":"Android (Chrome)","inst.desktop":"Computer (Chrome oder Edge)",
@@ -1508,9 +1508,9 @@ I18N.de = {
 };
 
 I18N.pt = {
-"app.name":"Mapa de palco",
+"app.name":"Podium",
 "app.tagline":"Disposição para orquestra de sopros e banda",
-"app.title":"Mapa de palco – orquestra de sopros e banda",
+"app.title":"Podium – orquestra de sopros e banda",
 "tb.aria":"Ferramentas",
 "tb.undo":"Desfazer","tb.undo.t":"Desfazer (Ctrl+Z)",
 "tb.redo":"Refazer","tb.redo.t":"Refazer (Ctrl+Y)",
@@ -1617,7 +1617,7 @@ I18N.pt = {
 "ed.err.name":"Dê um nome à predefinição.","ed.err.empty":"A instrumentação está vazia: adicione pelo menos um instrumento.","ed.err.noInst":"Adicione pelo menos um instrumento.",
 "ed.err.lastForm":"Pelo menos uma formação deve permanecer.","ed.err.lastLay":"Pelo menos uma disposição deve permanecer.","ed.err.lastStage":"Pelo menos um palco deve permanecer.",
 "kind.arc":"Arcos concêntricos por faixas","kind.block":"Fileiras retas por faixas","kind.wedge":"Setores por famílias","kind.single":"Semicírculo único",
-"export.title":"{name}, {count}","export.meta":"{layout}. Palco {w} × {d} m. {date}","file.prefix":"mapa-de-palco",
+"export.title":"{name}, {count}","export.meta":"{layout}. Palco {w} × {d} m. {date}","file.prefix":"podium",
 "toast.generated":"Disposição gerada: {positions} em {rows}.","toast.toFix.one":"{n} lugar a corrigir.","toast.toFix.other":"{n} lugares a corrigir.",
 "toast.deleted.one":"{n} lugar excluído","toast.deleted.other":"{n} lugares excluídos",
 "toast.added":"{name} adicionado: arraste-o para a posição desejada",
@@ -1629,10 +1629,10 @@ I18N.pt = {
 "toast.snapOn":"Encaixe na grade de 10 cm ligado","toast.snapOff":"Encaixe na grade desligado",
 "toast.saved":"Arquivo salvo","toast.saveCancelled":"Salvamento cancelado","toast.savePending":"Já há um salvamento aguardando confirmação","toast.saveUnavailable":"Salvar arquivos não está disponível nesta visualização","toast.download":"Download iniciado",
 "toast.pngFail":"Não foi possível criar o PNG","toast.pngFail2":"Não foi possível criar o PNG nesta visualização: use a exportação SVG",
-"toast.opened":"Projeto aberto","toast.invalid":"O arquivo não é um projeto válido do Mapa de palco","toast.resumed":"Sessão anterior retomada",
+"toast.opened":"Projeto aberto","toast.invalid":"O arquivo não é um projeto válido do Podium","toast.resumed":"Sessão anterior retomada",
 "toast.presetsReset":"Predefinições originais restauradas","toast.presetUpdated":"Predefinição atualizada","toast.presetCreated":"Predefinição criada","toast.presetDeleted":"Predefinição excluída",
 "toast.installed":"App instalado",
-"inst.title":"Instalar o Mapa de palco","inst.bar":"Abra pela tela inicial como um app, em tela cheia.","inst.go":"Instalar","inst.later":"Agora não",
+"inst.title":"Instalar o Podium","inst.bar":"Abra pela tela inicial como um app, em tela cheia.","inst.go":"Instalar","inst.later":"Agora não",
 "inst.intro":"Depois de adicionado à tela inicial, o mapa abre com um toque, em tela cheia, como os outros apps.",
 "inst.frame":"Se você está vendo esta página dentro do app do Claude ou numa pré-visualização, abra-a antes no navegador (Safari no iPhone, Chrome no Android) pelo link e siga os passos abaixo.",
 "inst.ios":"iPhone e iPad (Safari)","inst.android":"Android (Chrome)","inst.desktop":"Computador (Chrome ou Edge)",
@@ -1720,9 +1720,9 @@ I18N.pt = {
 };
 
 I18N.ja = {
-"app.name":"ステージ配置図",
+"app.name":"Podium",
 "app.tagline":"吹奏楽・ウィンドオーケストラの座席配置",
-"app.title":"ステージ配置図 – 吹奏楽の座席配置",
+"app.title":"Podium – 吹奏楽の座席配置",
 "tb.aria":"ツール",
 "tb.undo":"元に戻す","tb.undo.t":"元に戻す (Ctrl+Z)",
 "tb.redo":"やり直す","tb.redo.t":"やり直す (Ctrl+Y)",
@@ -1829,7 +1829,7 @@ I18N.ja = {
 "ed.err.name":"プリセットに名前を付けてください。","ed.err.empty":"編成が空です。楽器を 1 つ以上追加してください。","ed.err.noInst":"楽器を 1 つ以上追加してください。",
 "ed.err.lastForm":"編成は少なくとも 1 つ必要です。","ed.err.lastLay":"配置は少なくとも 1 つ必要です。","ed.err.lastStage":"ステージは少なくとも 1 つ必要です。",
 "kind.arc":"ゾーンごとの同心円の弧","kind.block":"ゾーンごとの直線の列","kind.wedge":"楽器群ごとの扇形","kind.single":"1 本の半円",
-"export.title":"{name}、{count}","export.meta":"{layout}。ステージ {w} × {d} m。{date}","file.prefix":"stage-plan",
+"export.title":"{name}、{count}","export.meta":"{layout}。ステージ {w} × {d} m。{date}","file.prefix":"podium",
 "toast.generated":"配置を生成しました：{rows}に{positions}。","toast.toFix.one":"修正が必要な席：{n}。","toast.toFix.other":"修正が必要な席：{n}。",
 "toast.deleted.one":"{n} 席を削除しました","toast.deleted.other":"{n} 席を削除しました",
 "toast.added":"{name}を追加しました。好きな位置へドラッグしてください",
@@ -1841,10 +1841,10 @@ I18N.ja = {
 "toast.snapOn":"10 cm グリッドへのスナップがオンです","toast.snapOff":"グリッドへのスナップがオフです",
 "toast.saved":"ファイルを保存しました","toast.saveCancelled":"保存をキャンセルしました","toast.savePending":"別の保存が確認待ちです","toast.saveUnavailable":"この画面ではファイルを保存できません","toast.download":"ダウンロードを開始しました",
 "toast.pngFail":"PNG を作成できませんでした","toast.pngFail2":"この画面では PNG を作成できません。SVG で書き出してください",
-"toast.opened":"プロジェクトを開きました","toast.invalid":"このファイルはステージ配置図のプロジェクトではありません","toast.resumed":"前回の作業を復元しました",
+"toast.opened":"プロジェクトを開きました","toast.invalid":"このファイルは Podium のプロジェクトではありません","toast.resumed":"前回の作業を復元しました",
 "toast.presetsReset":"元のプリセットに戻しました","toast.presetUpdated":"プリセットを更新しました","toast.presetCreated":"プリセットを作成しました","toast.presetDeleted":"プリセットを削除しました",
 "toast.installed":"アプリをインストールしました",
-"inst.title":"ステージ配置図をインストール","inst.bar":"ホーム画面からアプリのように全画面で開けます。","inst.go":"インストール","inst.later":"後で",
+"inst.title":"Podium をインストール","inst.bar":"ホーム画面からアプリのように全画面で開けます。","inst.go":"インストール","inst.later":"後で",
 "inst.intro":"ホーム画面に追加すると、ほかのアプリと同じようにワンタップで全画面表示できます。",
 "inst.frame":"Claude アプリやプレビュー内でこのページを見ている場合は、まずリンクからブラウザ (iPhone は Safari、Android は Chrome) で開き、以下の手順に従ってください。",
 "inst.ios":"iPhone・iPad (Safari)","inst.android":"Android (Chrome)","inst.desktop":"パソコン (Chrome または Edge)",
@@ -1924,9 +1924,9 @@ I18N.ja = {
 };
 
 I18N.zh = {
-"app.name":"舞台座位图",
+"app.name":"Podium",
 "app.tagline":"管乐团与管乐队的座位编排",
-"app.title":"舞台座位图 – 管乐团座位编排",
+"app.title":"Podium – 管乐团座位编排",
 "tb.aria":"工具",
 "tb.undo":"撤销","tb.undo.t":"撤销 (Ctrl+Z)",
 "tb.redo":"重做","tb.redo.t":"重做 (Ctrl+Y)",
@@ -2033,7 +2033,7 @@ I18N.zh = {
 "ed.err.name":"请为预设命名。","ed.err.empty":"编制为空：请至少添加一种乐器。","ed.err.noInst":"请至少添加一种乐器。",
 "ed.err.lastForm":"至少需要保留一个编制。","ed.err.lastLay":"至少需要保留一种排位。","ed.err.lastStage":"至少需要保留一个舞台。",
 "kind.arc":"按区域的同心弧线","kind.block":"按区域的直排","kind.wedge":"按乐器组的扇区","kind.single":"单个半圆",
-"export.title":"{name}，{count}","export.meta":"{layout}。舞台 {w} × {d} 米。{date}","file.prefix":"stage-plan",
+"export.title":"{name}，{count}","export.meta":"{layout}。舞台 {w} × {d} 米。{date}","file.prefix":"podium",
 "toast.generated":"已生成排位：{rows}，{positions}。","toast.toFix.one":"有 {n} 个座位需要调整。","toast.toFix.other":"有 {n} 个座位需要调整。",
 "toast.deleted.one":"已删除 {n} 个座位","toast.deleted.other":"已删除 {n} 个座位",
 "toast.added":"已添加{name}：拖到需要的位置",
@@ -2045,10 +2045,10 @@ I18N.zh = {
 "toast.snapOn":"已开启 10 厘米网格吸附","toast.snapOff":"已关闭网格吸附",
 "toast.saved":"文件已保存","toast.saveCancelled":"已取消保存","toast.savePending":"已有一个保存在等待确认","toast.saveUnavailable":"当前视图无法保存文件","toast.download":"已开始下载",
 "toast.pngFail":"无法生成 PNG","toast.pngFail2":"当前视图无法生成 PNG：请使用 SVG 导出",
-"toast.opened":"项目已打开","toast.invalid":"此文件不是有效的舞台座位图项目","toast.resumed":"已恢复上次的工作",
+"toast.opened":"项目已打开","toast.invalid":"此文件不是有效的 Podium 项目","toast.resumed":"已恢复上次的工作",
 "toast.presetsReset":"已恢复原始预设","toast.presetUpdated":"预设已更新","toast.presetCreated":"预设已创建","toast.presetDeleted":"预设已删除",
 "toast.installed":"应用已安装",
-"inst.title":"安装舞台座位图","inst.bar":"像应用一样从主屏幕全屏打开。","inst.go":"安装","inst.later":"以后再说",
+"inst.title":"安装 Podium","inst.bar":"像应用一样从主屏幕全屏打开。","inst.go":"安装","inst.later":"以后再说",
 "inst.intro":"添加到主屏幕后，座位图可像其他应用一样一键全屏打开。",
 "inst.frame":"如果你是在 Claude 应用或预览中查看此页面，请先通过链接在浏览器中打开（iPhone 用 Safari，Android 用 Chrome），再按以下步骤操作。",
 "inst.ios":"iPhone 和 iPad（Safari）","inst.android":"Android（Chrome）","inst.desktop":"电脑（Chrome 或 Edge）",
