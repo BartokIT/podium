@@ -1,0 +1,52 @@
+# Publishes the app to GitHub Pages on every push.
+# Settings > Pages > Build and deployment > Source must be "GitHub Actions".
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare site files
+        env:
+          GOOGLE_CLIENT_ID: ${{ vars.GOOGLE_CLIENT_ID }}
+        run: |
+          # The app may be at the repository root or inside a sub-folder.
+          INDEX=$(find . -name index.html -not -path './.git/*' | head -n 1)
+          if [ -z "$INDEX" ]; then echo "index.html not found"; exit 1; fi
+          SRC=$(dirname "$INDEX"); echo "App folder: $SRC"
+          SITE="$RUNNER_TEMP/site"; mkdir -p "$SITE"
+          cp -r "$SRC"/. "$SITE"/
+          rm -rf "$SITE/.git" "$SITE/.github"
+          touch "$SITE/.nojekyll"
+          # New cache version on every deploy, so installed apps get the update.
+          if [ -f "$SITE/sw.js" ]; then sed -i "s/stageplan-v[0-9A-Za-z-]*/stageplan-${GITHUB_SHA::7}/" "$SITE/sw.js"; fi
+          # Google client ID from the repository variable.
+          if [ -n "$GOOGLE_CLIENT_ID" ] && [ -f "$SITE/config.js" ]; then
+            sed -i "s|googleClientId: \"\"|googleClientId: \"$GOOGLE_CLIENT_ID\"|" "$SITE/config.js"
+          fi
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/site
+      - id: deployment
+        uses: actions/deploy-pages@v4
