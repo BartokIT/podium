@@ -1,0 +1,17 @@
+{
+  "name": "Stage Plan – seating for wind orchestras and bands",
+  "short_name": "Stage Plan",
+  "description": "Seating plans for wind orchestras and concert bands, in eight languages.",
+  "lang": "en",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#E4E8EC",
+  "theme_color": "#2456A6",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
