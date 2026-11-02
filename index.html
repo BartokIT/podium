@@ -243,7 +243,12 @@ main.stage{ position:relative; min-width:0; min-height:0; background:var(--canva
 .ovl-o{ fill:none; stroke:var(--warn); stroke-width:2; stroke-dasharray:4 3; }
 .out-o{ fill:none; stroke:var(--caution); stroke-width:2; stroke-dasharray:2 3; }
 svg *{ vector-effect:non-scaling-stroke; }
-.lbl, .lbl *{ vector-effect:none; }
+.lbl, .lbl *, .riser-t{ vector-effect:none; }
+.riser{ fill:var(--ink); fill-opacity:.04; stroke:var(--ink); stroke-opacity:.6; stroke-width:1.2; stroke-dasharray:5 3; }
+.riser-t{ fill:var(--ink); font-family:var(--cond); font-weight:600; paint-order:stroke; stroke:var(--label-halo); stroke-linejoin:round; }
+.plbl{ display:block; font-size:12px; color:var(--muted); margin:8px 0 3px; }
+.legend.syms{ margin-top:10px; }
+.legend svg{ width:24px; height:16px; flex:none; }
 
 .ebtn{ margin-left:6px; width:26px; height:24px; border:1px solid transparent; border-radius:5px; background:transparent; color:var(--muted); display:inline-flex; align-items:center; justify-content:center; flex:none; }
 .ebtn:hover{ border-color:var(--line); background:var(--panel2); color:var(--ink); }
@@ -429,6 +434,7 @@ kbd{ font-family:var(--ui); font-size:12px; border:1px solid var(--line); border
     <h2 id="helpT" data-i18n="help.title"></h2>
     <div class="kb" id="helpRows"></div>
     <p class="hint" style="margin-top:14px" data-i18n="help.presets"></p>
+    <p class="hint" data-i18n="help.parts"></p>
     <p class="hint" data-i18n="help.view"></p>
     <div class="btnrow"><button class="btn primary" id="helpClose" data-i18n="btn.close"></button></div>
   </div>
@@ -536,6 +542,7 @@ I18N.en = {
 "ana.out.one":"{n} seat is off the stage.","ana.out.other":"{n} seats are off the stage.",
 "ana.select":"Select","ana.ok":"No overlaps: every seat is on the stage.","ana.full":"Very full stage: more than 55% is taken by footprints, aisles will be narrow.",
 "leg.title":"Legend","leg.note":"Dashed red outline: overlap. Orange outline: off the stage.",
+"part.player":"Musician","part.present":"Present","part.instOnly":"Instrument only","part.stand":"Music stand","part.own":"Own","part.shared":"Shared","part.none":"None","part.sharedWith":"Shares the stand with {list}.","part.shareHint":"To share a stand, select two or more musicians and press Shared.","part.riser":"Riser height (cm)","arcs.riser":"Riser for the whole row (cm)","toast.shareNeed":"Select at least two positions to share a stand","toast.shared":"{n} musicians now share one stand","ana.players":"Musicians","ana.instOnly":"Instruments without musician","ana.stands":"Music stands","ana.risers":"Positions on risers","sym.title":"Symbols","sym.player":"Musician","sym.stand":"Music stand","sym.shared":"Stand shared by several musicians","sym.riser":"Riser, with its height in cm","sym.instOnly":"Instrument without musician","help.parts":"Each position is made of the musician, the music stand and, for bulky instruments, the instrument. In the Selection panel you can leave only the instrument, share one stand among several musicians or remove it, and put single positions or whole rows on a riser.",
 "preset.edit.t":"Edit the preset “{name}”","preset.mine":"Personal preset","preset.reset":"Restore the original presets","preset.resetConfirm":"Confirm: restore the original presets","preset.copyOf":"{name} (copy)",
 "ed.title.form.edit":"Edit ensemble: {name}","ed.title.form.new":"New ensemble preset",
 "ed.title.lay.edit":"Edit layout: {name}","ed.title.lay.new":"New layout preset",
@@ -748,6 +755,7 @@ I18N.it = {
 "ana.out.one":"{n} seduta esce dal palco.","ana.out.other":"{n} sedute escono dal palco.",
 "ana.select":"Seleziona","ana.ok":"Nessuna sovrapposizione: tutte le sedute stanno sul palco.","ana.full":"Palco molto pieno: oltre il 55% è occupato dagli ingombri, i passaggi saranno stretti.",
 "leg.title":"Legenda","leg.note":"Bordo rosso tratteggiato: sovrapposizione. Bordo arancio: fuori dal palco.",
+"part.player":"Musicista","part.present":"Presente","part.instOnly":"Solo strumento","part.stand":"Leggio","part.own":"Proprio","part.shared":"Condiviso","part.none":"Nessuno","part.sharedWith":"Condivide il leggio con {list}.","part.shareHint":"Per condividere un leggio seleziona due o più musicisti e premi Condiviso.","part.riser":"Altezza pedana (cm)","arcs.riser":"Pedana per tutta la fila (cm)","toast.shareNeed":"Seleziona almeno due posizioni per condividere un leggio","toast.shared":"{n} musicisti ora condividono un leggio","ana.players":"Musicisti","ana.instOnly":"Strumenti senza musicista","ana.stands":"Leggii","ana.risers":"Posizioni su pedana","sym.title":"Simboli","sym.player":"Musicista","sym.stand":"Leggio","sym.shared":"Leggio condiviso da più musicisti","sym.riser":"Pedana, con l’altezza in cm","sym.instOnly":"Strumento senza musicista","help.parts":"Ogni posizione è composta dal musicista, dal leggio e, per gli strumenti ingombranti, dallo strumento. Nel pannello Selezione puoi lasciare solo lo strumento, far condividere un leggio a più musicisti o toglierlo, e mettere su una pedana singole posizioni o intere file.",
 "preset.edit.t":"Modifica il preset “{name}”","preset.mine":"Preset personale","preset.reset":"Ripristina i preset originali","preset.resetConfirm":"Conferma: ripristina i preset originali","preset.copyOf":"{name} (copia)",
 "ed.title.form.edit":"Modifica formazione: {name}","ed.title.form.new":"Nuovo preset di formazione",
 "ed.title.lay.edit":"Modifica disposizione: {name}","ed.title.lay.new":"Nuovo preset di disposizione",
@@ -960,6 +968,7 @@ I18N.es = {
 "ana.out.one":"{n} puesto sale del escenario.","ana.out.other":"{n} puestos salen del escenario.",
 "ana.select":"Seleccionar","ana.ok":"Sin solapamientos: todos los puestos están en el escenario.","ana.full":"Escenario muy lleno: más del 55 % está ocupado, los pasillos serán estrechos.",
 "leg.title":"Leyenda","leg.note":"Borde rojo discontinuo: solapamiento. Borde naranja: fuera del escenario.",
+"part.player":"Músico","part.present":"Presente","part.instOnly":"Solo instrumento","part.stand":"Atril","part.own":"Propio","part.shared":"Compartido","part.none":"Ninguno","part.sharedWith":"Comparte el atril con {list}.","part.shareHint":"Para compartir un atril, selecciona dos o más músicos y pulsa Compartido.","part.riser":"Altura de la tarima (cm)","arcs.riser":"Tarima para toda la fila (cm)","toast.shareNeed":"Selecciona al menos dos posiciones para compartir un atril","toast.shared":"{n} músicos comparten ahora un atril","ana.players":"Músicos","ana.instOnly":"Instrumentos sin músico","ana.stands":"Atriles","ana.risers":"Posiciones sobre tarima","sym.title":"Símbolos","sym.player":"Músico","sym.stand":"Atril","sym.shared":"Atril compartido por varios músicos","sym.riser":"Tarima, con su altura en cm","sym.instOnly":"Instrumento sin músico","help.parts":"Cada posición se compone del músico, el atril y, en los instrumentos voluminosos, el instrumento. En el panel Selección puedes dejar solo el instrumento, hacer que varios músicos compartan un atril o quitarlo, y subir a una tarima posiciones sueltas o filas enteras.",
 "preset.edit.t":"Editar el preajuste «{name}»","preset.mine":"Preajuste personal","preset.reset":"Restaurar los preajustes originales","preset.resetConfirm":"Confirmar: restaurar los preajustes originales","preset.copyOf":"{name} (copia)",
 "ed.title.form.edit":"Editar formación: {name}","ed.title.form.new":"Nuevo preajuste de formación",
 "ed.title.lay.edit":"Editar disposición: {name}","ed.title.lay.new":"Nuevo preajuste de disposición",
@@ -1172,6 +1181,7 @@ I18N.fr = {
 "ana.out.one":"{n} place dépasse de la scène.","ana.out.other":"{n} places dépassent de la scène.",
 "ana.select":"Sélectionner","ana.ok":"Aucun chevauchement : toutes les places sont sur la scène.","ana.full":"Scène très pleine : plus de 55 % est occupé, les passages seront étroits.",
 "leg.title":"Légende","leg.note":"Contour rouge pointillé : chevauchement. Contour orange : hors de la scène.",
+"part.player":"Musicien","part.present":"Présent","part.instOnly":"Instrument seul","part.stand":"Pupitre","part.own":"Individuel","part.shared":"Partagé","part.none":"Aucun","part.sharedWith":"Partage le pupitre avec {list}.","part.shareHint":"Pour partager un pupitre, sélectionnez deux musiciens ou plus et appuyez sur Partagé.","part.riser":"Hauteur du praticable (cm)","arcs.riser":"Praticable pour tout le rang (cm)","toast.shareNeed":"Sélectionnez au moins deux positions pour partager un pupitre","toast.shared":"{n} musiciens partagent maintenant un pupitre","ana.players":"Musiciens","ana.instOnly":"Instruments sans musicien","ana.stands":"Pupitres","ana.risers":"Positions sur praticable","sym.title":"Symboles","sym.player":"Musicien","sym.stand":"Pupitre","sym.shared":"Pupitre partagé par plusieurs musiciens","sym.riser":"Praticable, avec sa hauteur en cm","sym.instOnly":"Instrument sans musicien","help.parts":"Chaque position comprend le musicien, le pupitre et, pour les instruments encombrants, l’instrument. Dans le panneau Sélection, vous pouvez ne laisser que l’instrument, faire partager un pupitre à plusieurs musiciens ou le retirer, et placer des positions isolées ou des rangs entiers sur un praticable.",
 "preset.edit.t":"Modifier le préréglage « {name} »","preset.mine":"Préréglage personnel","preset.reset":"Rétablir les préréglages d’origine","preset.resetConfirm":"Confirmer : rétablir les préréglages d’origine","preset.copyOf":"{name} (copie)",
 "ed.title.form.edit":"Modifier la formation : {name}","ed.title.form.new":"Nouveau préréglage de formation",
 "ed.title.lay.edit":"Modifier le placement : {name}","ed.title.lay.new":"Nouveau préréglage de placement",
@@ -1384,6 +1394,7 @@ I18N.de = {
 "ana.out.one":"{n} Platz ragt über die Bühne hinaus.","ana.out.other":"{n} Plätze ragen über die Bühne hinaus.",
 "ana.select":"Auswählen","ana.ok":"Keine Überschneidungen: Alle Plätze liegen auf der Bühne.","ana.full":"Sehr volle Bühne: Über 55 % sind belegt, die Gänge werden eng.",
 "leg.title":"Legende","leg.note":"Rot gestrichelt: Überschneidung. Orange: außerhalb der Bühne.",
+"part.player":"Musiker","part.present":"Anwesend","part.instOnly":"Nur Instrument","part.stand":"Notenpult","part.own":"Eigenes","part.shared":"Geteilt","part.none":"Keines","part.sharedWith":"Teilt das Pult mit {list}.","part.shareHint":"Um ein Pult zu teilen, zwei oder mehr Musiker auswählen und auf Geteilt klicken.","part.riser":"Podesthöhe (cm)","arcs.riser":"Podest für die ganze Reihe (cm)","toast.shareNeed":"Mindestens zwei Positionen auswählen, um ein Pult zu teilen","toast.shared":"{n} Musiker teilen sich jetzt ein Pult","ana.players":"Musiker","ana.instOnly":"Instrumente ohne Musiker","ana.stands":"Notenpulte","ana.risers":"Positionen auf Podesten","sym.title":"Symbole","sym.player":"Musiker","sym.stand":"Notenpult","sym.shared":"Pult für mehrere Musiker","sym.riser":"Podest mit Höhe in cm","sym.instOnly":"Instrument ohne Musiker","help.parts":"Jede Position besteht aus dem Musiker, dem Notenpult und bei großen Instrumenten dem Instrument selbst. Im Bereich Auswahl kann nur das Instrument stehen bleiben, ein Pult von mehreren Musikern geteilt oder entfernt werden, und einzelne Positionen oder ganze Reihen lassen sich auf ein Podest stellen.",
 "preset.edit.t":"Vorlage „{name}“ bearbeiten","preset.mine":"Eigene Vorlage","preset.reset":"Ursprüngliche Vorlagen wiederherstellen","preset.resetConfirm":"Bestätigen: ursprüngliche Vorlagen wiederherstellen","preset.copyOf":"{name} (Kopie)",
 "ed.title.form.edit":"Besetzung bearbeiten: {name}","ed.title.form.new":"Neue Besetzungsvorlage",
 "ed.title.lay.edit":"Aufstellung bearbeiten: {name}","ed.title.lay.new":"Neue Aufstellungsvorlage",
@@ -1596,6 +1607,7 @@ I18N.pt = {
 "ana.out.one":"{n} lugar sai do palco.","ana.out.other":"{n} lugares saem do palco.",
 "ana.select":"Selecionar","ana.ok":"Sem sobreposições: todos os lugares estão no palco.","ana.full":"Palco muito cheio: mais de 55% está ocupado, as passagens ficarão estreitas.",
 "leg.title":"Legenda","leg.note":"Contorno vermelho tracejado: sobreposição. Contorno laranja: fora do palco.",
+"part.player":"Músico","part.present":"Presente","part.instOnly":"Só instrumento","part.stand":"Estante","part.own":"Própria","part.shared":"Compartilhada","part.none":"Nenhuma","part.sharedWith":"Compartilha a estante com {list}.","part.shareHint":"Para compartilhar uma estante, selecione dois ou mais músicos e toque em Compartilhada.","part.riser":"Altura do praticável (cm)","arcs.riser":"Praticável para a fileira inteira (cm)","toast.shareNeed":"Selecione pelo menos duas posições para compartilhar uma estante","toast.shared":"{n} músicos agora compartilham uma estante","ana.players":"Músicos","ana.instOnly":"Instrumentos sem músico","ana.stands":"Estantes","ana.risers":"Posições em praticável","sym.title":"Símbolos","sym.player":"Músico","sym.stand":"Estante","sym.shared":"Estante compartilhada por vários músicos","sym.riser":"Praticável, com a altura em cm","sym.instOnly":"Instrumento sem músico","help.parts":"Cada posição é formada pelo músico, pela estante e, nos instrumentos volumosos, pelo próprio instrumento. No painel Seleção você pode deixar só o instrumento, fazer vários músicos compartilharem uma estante ou retirá-la, e colocar posições isoladas ou fileiras inteiras sobre um praticável.",
 "preset.edit.t":"Editar a predefinição “{name}”","preset.mine":"Predefinição pessoal","preset.reset":"Restaurar as predefinições originais","preset.resetConfirm":"Confirmar: restaurar as predefinições originais","preset.copyOf":"{name} (cópia)",
 "ed.title.form.edit":"Editar formação: {name}","ed.title.form.new":"Nova predefinição de formação",
 "ed.title.lay.edit":"Editar disposição: {name}","ed.title.lay.new":"Nova predefinição de disposição",
@@ -1808,6 +1820,7 @@ I18N.ja = {
 "ana.out.one":"{n} 席がステージからはみ出しています。","ana.out.other":"{n} 席がステージからはみ出しています。",
 "ana.select":"選択","ana.ok":"重なりはありません。すべての席がステージ上にあります。","ana.full":"ステージがかなり混み合っています。55% 以上が占有され、通路が狭くなります。",
 "leg.title":"凡例","leg.note":"赤い破線：重なり。オレンジの線：ステージ外。",
+"part.player":"奏者","part.present":"あり","part.instOnly":"楽器のみ","part.stand":"譜面台","part.own":"専用","part.shared":"共用","part.none":"なし","part.sharedWith":"{list} と譜面台を共用しています。","part.shareHint":"譜面台を共用するには、2人以上の奏者を選択して「共用」を押します。","part.riser":"ひな壇の高さ (cm)","arcs.riser":"列全体のひな壇 (cm)","toast.shareNeed":"譜面台を共用するには2つ以上のポジションを選択してください","toast.shared":"{n}人の奏者が1台の譜面台を共用します","ana.players":"奏者","ana.instOnly":"奏者のいない楽器","ana.stands":"譜面台","ana.risers":"ひな壇上のポジション","sym.title":"記号","sym.player":"奏者","sym.stand":"譜面台","sym.shared":"複数の奏者で共用する譜面台","sym.riser":"ひな壇（高さは cm）","sym.instOnly":"奏者のいない楽器","help.parts":"各ポジションは奏者、譜面台、そして大型楽器では楽器本体で構成されます。「選択」パネルでは、楽器だけを残す、譜面台を複数の奏者で共用する・取り除く、ポジションや列全体をひな壇に載せる、といった設定ができます。",
 "preset.edit.t":"プリセット「{name}」を編集","preset.mine":"個人用プリセット","preset.reset":"元のプリセットに戻す","preset.resetConfirm":"確認：元のプリセットに戻す","preset.copyOf":"{name}（コピー）",
 "ed.title.form.edit":"編成を編集：{name}","ed.title.form.new":"新しい編成プリセット",
 "ed.title.lay.edit":"配置を編集：{name}","ed.title.lay.new":"新しい配置プリセット",
@@ -2012,6 +2025,7 @@ I18N.zh = {
 "ana.out.one":"{n} 个座位超出舞台。","ana.out.other":"{n} 个座位超出舞台。",
 "ana.select":"选择","ana.ok":"没有重叠：所有座位都在舞台上。","ana.full":"舞台非常拥挤：占地超过 55%，通道会很窄。",
 "leg.title":"图例","leg.note":"红色虚线：重叠。橙色线：超出舞台。",
+"part.player":"乐手","part.present":"在场","part.instOnly":"仅乐器","part.stand":"谱架","part.own":"独用","part.shared":"共用","part.none":"无","part.sharedWith":"与 {list} 共用谱架。","part.shareHint":"要共用谱架，请选择两名或以上乐手，然后点击“共用”。","part.riser":"台阶高度（厘米）","arcs.riser":"整排台阶（厘米）","toast.shareNeed":"请至少选择两个位置来共用谱架","toast.shared":"{n} 名乐手现在共用一个谱架","ana.players":"乐手","ana.instOnly":"无乐手的乐器","ana.stands":"谱架","ana.risers":"台阶上的位置","sym.title":"符号","sym.player":"乐手","sym.stand":"谱架","sym.shared":"多名乐手共用的谱架","sym.riser":"台阶（高度单位为厘米）","sym.instOnly":"无乐手的乐器","help.parts":"每个位置由乐手、谱架以及（大型乐器的）乐器本身组成。在“选择”面板中，可以只保留乐器、让多名乐手共用谱架或去掉谱架，并把单个位置或整排放到台阶上。",
 "preset.edit.t":"编辑预设“{name}”","preset.mine":"个人预设","preset.reset":"恢复原始预设","preset.resetConfirm":"确认：恢复原始预设","preset.copyOf":"{name}（副本）",
 "ed.title.form.edit":"编辑编制：{name}","ed.title.form.new":"新建编制预设",
 "ed.title.lay.edit":"编辑排位：{name}","ed.title.lay.new":"新建排位预设",
@@ -2571,7 +2585,10 @@ function analyze(){
   let area=0, minY=D;
   ms.forEach((m,i)=>{ const I=inst(m.key); area+=I.w*I.d; polys[i].forEach(p=>minY=Math.min(minY,p[1])); });
   let far=0; ms.forEach(m=>far=Math.max(far,Math.hypot(m.x-state.podium.x,m.y-state.podium.y)));
-  ui.analysis = {ovl,out,area,depth:D-minY,far};
+  const groups = standGroups();
+  const players = ms.filter(m=>!m.np).length, risers = ms.filter(m=>m.riser>0).length;
+  const stands = ms.filter(m=>standOf(m,groups)==="own").length + groups.size;
+  ui.analysis = {ovl,out,area,depth:D-minY,far,players,stands,risers};
 }
 function countOnStage(k){ let n=0; for(const m of state.musicians) if(m.key===k) n++; return n; }
 function labelOf(m){ return {a:instAbbr(m.key), n:(state.counts[m.key]>1 || countOnStage(m.key)>1) ? String(m.num) : ""}; }
@@ -2581,36 +2598,69 @@ function arcPath(cx,cy,r,a0,a1){
   const p0=[cx+r*Math.sin(rad(a0)), cy-r*Math.cos(rad(a0))], p1=[cx+r*Math.sin(rad(a1)), cy-r*Math.cos(rad(a1))];
   return `M${p0[0].toFixed(3)} ${p0[1].toFixed(3)}A${r} ${r} 0 ${(a1-a0)>180?1:0} 1 ${p1[0].toFixed(3)} ${p1[1].toFixed(3)}`;
 }
-function shapeSVG(m){
-  const I = inst(m.key), col = FAM[I.f].c, w=I.w, d=I.d, hw=w/2, hd=d/2;
+/* A position is made of up to three parts: the musician (chair and circle), the music stand and, for bulky instruments, the instrument.
+   The musician can be missing (instrument only); the stand can be the musician's own, shared with others, or absent. */
+const PLAYER_AT = {seat:[0,.29], timp:[0,.3], snare:[0,.27], cym:[0,.27], gong:[0,.27], harp:[-.3,.3], piano:[0,.18]};
+const playerAt = I => { const p = PLAYER_AT[I.s||"seat"] || [0,.25]; return [p[0], -I.d/2+p[1]]; };
+const standAt = I => [I.s==="harp" ? -.32 : 0, I.d/2-.14];
+const standT = (x,y,w) => `<line x1="${x}" y1="${y}" x2="${x}" y2="${y-.18}" class="ink-s" stroke-width="1.2"/><line x1="${x-w/2}" y1="${y}" x2="${x+w/2}" y2="${y}" class="ink-s" stroke-width="2.6" stroke-linecap="round"/>`;
+const toWorldPt = (m,[u,v]) => { const c=Math.cos(rad(m.rot)), s=Math.sin(rad(m.rot)); return [m.x+u*c-v*s, m.y+u*s+v*c]; };
+/* Shared stands: musicians with the same m.sg read from one stand; a group left with a single member falls back to its own stand. */
+function standGroups(){
+  const g = new Map();
+  for(const m of state.musicians) if(m.sg){ if(!g.has(m.sg)) g.set(m.sg,[]); g.get(m.sg).push(m); }
+  for(const [k,v] of g) if(v.length<2) g.delete(k);
+  return g;
+}
+function standOf(m, groups){
+  if(m.sg && groups.has(m.sg)) return "shared";
+  if(m.st==="own"||m.st==="none") return m.st;
+  return (inst(m.key).s||"seat")==="seat" ? "own" : "none";
+}
+/* The shared stand sits between the members' own stand spots, turned to their average orientation. */
+function sharedStandAt(list){
+  let x=0, y=0, sn=0, cs=0;
+  for(const m of list){ const p=toWorldPt(m, standAt(inst(m.key))); x+=p[0]; y+=p[1]; sn+=Math.sin(rad(m.rot)); cs+=Math.cos(rad(m.rot)); }
+  return {x:x/list.length, y:y/list.length, rot:deg(Math.atan2(sn,cs))};
+}
+function tidyStands(){
+  const n = {}; state.musicians.forEach(m=>{ if(m.sg) n[m.sg]=(n[m.sg]||0)+1; });
+  state.musicians.forEach(m=>{ if(m.sg && n[m.sg]<2) delete m.sg; });
+}
+function shapeSVG(m, stand){
+  const I = inst(m.key), col = FAM[I.f].c, w=I.w, d=I.d, hw=w/2, hd=d/2, kind = I.s||"seat";
   let s = `<rect x="${-hw}" y="${-hd}" width="${w}" height="${d}" rx=".06" fill="${col}" fill-opacity=".11" stroke="${col}" stroke-width="1.2"/>`;
-  const player = cy=>`<circle cx="0" cy="${cy}" r=".16" fill="${col}"/>`;
-  switch(I.s||"seat"){
-    case "seat":
-      s += `<rect x="-.22" y="${-hd+.08}" width=".44" height=".42" rx=".08" fill="${col}" fill-opacity=".3"/>` + player(-hd+.29)
-        + `<line x1="0" y1="${hd-.14}" x2="0" y2="${hd-.32}" class="ink-s" stroke-width="1.2"/><line x1="-.24" y1="${hd-.14}" x2=".24" y2="${hd-.14}" class="ink-s" stroke-width="2.6" stroke-linecap="round"/>`;
-      if(m.key==="tbn"||m.key==="tbnB") s += `<line x1=".12" y1="${-hd+.45}" x2=".12" y2="${hd-.02}" stroke="${col}" stroke-width="1.2" stroke-dasharray="2 2"/>`;
-      break;
+  /* instrument */
+  switch(kind){
     case "timp": {
       const cs=[[-1,hd-.62,.37],[-.35,hd-.48,.34],[.35,hd-.48,.31],[1,hd-.62,.28]];
-      s += cs.map(([x,y,r])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${col}" fill-opacity=".22" stroke="${col}" stroke-width="1.2"/>`).join("") + player(-hd+.3);
+      s += cs.map(([x,y,r])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${col}" fill-opacity=".22" stroke="${col}" stroke-width="1.2"/>`).join("");
       break; }
-    case "bass": s += `<circle cx="0" cy="${hd-.6}" r=".45" fill="${col}" fill-opacity=".2" stroke="${col}" stroke-width="1.2"/><circle cx="0" cy="${hd-.6}" r=".1" fill="${col}"/>` + player(-hd+.25); break;
-    case "snare": s += `<circle cx="0" cy="${hd-.42}" r=".24" fill="${col}" fill-opacity=".22" stroke="${col}" stroke-width="1.2"/>` + player(-hd+.27); break;
-    case "cym": s += `<circle cx="-.25" cy="${hd-.38}" r=".24" fill="none" stroke="${col}" stroke-width="1.2"/><circle cx=".25" cy="${hd-.38}" r=".24" fill="none" stroke="${col}" stroke-width="1.2"/>` + player(-hd+.27); break;
-    case "gong": s += `<rect x="-.55" y="${hd-.35}" width="1.1" height=".12" fill="${col}" fill-opacity=".5"/><circle cx="0" cy="${hd-.29}" r=".05" fill="${col}"/>` + player(-hd+.27); break;
-    case "kit": s += [[-.55,.55,.3],[0,.65,.38],[.55,.55,.28],[-.3,.1,.2],[.3,.1,.2]].map(([x,y,r])=>`<circle cx="${x}" cy="${-hd+.5+y}" r="${r}" fill="${col}" fill-opacity=".2" stroke="${col}" stroke-width="1"/>`).join("") + player(-hd+.25); break;
-    case "table": s += `<rect x="${-hw+.12}" y="${hd-.55}" width="${w-.24}" height=".45" rx=".03" fill="${col}" fill-opacity=".25" stroke="${col}" stroke-width="1"/>` + player(-hd+.25); break;
-    case "chimes": { let tt=""; for(let i=0;i<8;i++) tt+=`<circle cx="${-hw+.25+i*(w-.5)/7}" cy="${hd-.3}" r=".05" fill="${col}"/>`; s += `<rect x="${-hw+.12}" y="${hd-.4}" width="${w-.24}" height=".2" fill="none" stroke="${col}" stroke-width="1"/>`+tt+player(-hd+.25); break; }
+    case "bass": s += `<circle cx="0" cy="${hd-.6}" r=".45" fill="${col}" fill-opacity=".2" stroke="${col}" stroke-width="1.2"/><circle cx="0" cy="${hd-.6}" r=".1" fill="${col}"/>`; break;
+    case "snare": s += `<circle cx="0" cy="${hd-.42}" r=".24" fill="${col}" fill-opacity=".22" stroke="${col}" stroke-width="1.2"/>`; break;
+    case "cym": s += `<circle cx="-.25" cy="${hd-.38}" r=".24" fill="none" stroke="${col}" stroke-width="1.2"/><circle cx=".25" cy="${hd-.38}" r=".24" fill="none" stroke="${col}" stroke-width="1.2"/>`; break;
+    case "gong": s += `<rect x="-.55" y="${hd-.35}" width="1.1" height=".12" fill="${col}" fill-opacity=".5"/><circle cx="0" cy="${hd-.29}" r=".05" fill="${col}"/>`; break;
+    case "kit": s += [[-.55,.55,.3],[0,.65,.38],[.55,.55,.28],[-.3,.1,.2],[.3,.1,.2]].map(([x,y,r])=>`<circle cx="${x}" cy="${-hd+.5+y}" r="${r}" fill="${col}" fill-opacity=".2" stroke="${col}" stroke-width="1"/>`).join(""); break;
+    case "table": s += `<rect x="${-hw+.12}" y="${hd-.55}" width="${w-.24}" height=".45" rx=".03" fill="${col}" fill-opacity=".25" stroke="${col}" stroke-width="1"/>`; break;
+    case "chimes": { let tt=""; for(let i=0;i<8;i++) tt+=`<circle cx="${-hw+.25+i*(w-.5)/7}" cy="${hd-.3}" r=".05" fill="${col}"/>`; s += `<rect x="${-hw+.12}" y="${hd-.4}" width="${w-.24}" height=".2" fill="none" stroke="${col}" stroke-width="1"/>`+tt; break; }
     case "mallet": {
       const iw=w-.2, ih=Math.min(.75,d-.55), y0=hd-.1-ih; let bars="";
       const n = Math.max(6,Math.round(iw/.16));
       for(let i=1;i<n;i++){ const x=-iw/2+i*iw/n; bars+=`<line x1="${x.toFixed(3)}" y1="${y0+.04}" x2="${x.toFixed(3)}" y2="${(y0+ih-.04 - (i%2? ih*.25:0)).toFixed(3)}" stroke="${col}" stroke-width="1"/>`; }
-      s += `<path d="M${-iw/2} ${y0}H${iw/2}L${iw/2-.05} ${y0+ih}H${-iw/2+.05}Z" fill="${col}" fill-opacity=".18" stroke="${col}" stroke-width="1.2"/>`+bars+player(-hd+.25);
+      s += `<path d="M${-iw/2} ${y0}H${iw/2}L${iw/2-.05} ${y0+ih}H${-iw/2+.05}Z" fill="${col}" fill-opacity=".18" stroke="${col}" stroke-width="1.2"/>`+bars;
       break; }
-    case "harp": s += `<path d="M-.3 ${hd-.15}L.35 ${hd-.15}L-.2 ${-hd+.5}Z" fill="${col}" fill-opacity=".22" stroke="${col}" stroke-width="1.2"/><rect x="-.5" y="${-hd+.1}" width=".4" height=".38" rx=".07" fill="${col}" fill-opacity=".3"/><circle cx="-.3" cy="${-hd+.3}" r=".15" fill="${col}"/>`; break;
-    case "piano": s += `<path d="M${-hw+.1} ${hd-.1}H${hw-.1}V${-hd+.9}C${hw-.1} ${-hd+.55} ${hw-.45} ${-hd+.45} ${hw-.7} ${-hd+.45}C${-.1} ${-hd+.45} ${-hw+.1} ${-hd+.9} ${-hw+.1} ${-hd+.45}Z" fill="${col}" fill-opacity=".2" stroke="${col}" stroke-width="1.2"/><rect x="-.45" y="${-hd+.05}" width=".9" height=".3" rx=".05" fill="${col}" fill-opacity=".35"/>`; break;
+    case "harp": s += `<path d="M-.3 ${hd-.15}L.35 ${hd-.15}L-.2 ${-hd+.5}Z" fill="${col}" fill-opacity=".22" stroke="${col}" stroke-width="1.2"/>`; break;
+    case "piano": s += `<path d="M${-hw+.1} ${hd-.1}H${hw-.1}V${-hd+1.07}C${hw-.1} ${-hd+.72} ${hw-.45} ${-hd+.62} ${hw-.7} ${-hd+.62}C${-.1} ${-hd+.62} ${-hw+.1} ${-hd+1.07} ${-hw+.1} ${-hd+.62}Z" fill="${col}" fill-opacity=".2" stroke="${col}" stroke-width="1.2"/><rect x="-.45" y="${-hd+.36}" width=".9" height=".24" rx=".05" fill="${col}" fill-opacity=".35"/>`; break;
   }
+  /* musician: seated parts keep their chair even when the seat is empty */
+  const [px,py] = playerAt(I);
+  if(kind==="seat"||kind==="harp") s += `<rect x="${px-.22}" y="${py-.21}" width=".44" height=".42" rx=".08" fill="${col}" fill-opacity=".3"/>`;
+  if(!m.np){
+    s += `<circle cx="${px}" cy="${py}" r=".16" fill="${col}"/>`;
+    if(m.key==="tbn"||m.key==="tbnB") s += `<line x1=".12" y1="${-hd+.45}" x2=".12" y2="${hd-.02}" stroke="${col}" stroke-width="1.2" stroke-dasharray="2 2"/>`;
+  }
+  /* stand */
+  if(stand==="own"){ const [sx,sy] = standAt(I); s += standT(sx,sy,.48); }
   return s;
 }
 function stageSVG(){
@@ -2656,24 +2706,35 @@ function podiumSVG(){
 }
 function musiciansSVG(forExport){
   const A = ui.analysis || {ovl:new Set(),out:new Set()};
-  const g=[], labels=[];
+  const risers=[], g=[], tops=[], labels=[];
   const actA = !forExport && ui.showArcs && ui.activeArc;
+  const groups = standGroups();
   for(const m of state.musicians){
     const I = inst(m.key), sel = !forExport && ui.sel.has(m.id);
     const inArc = actA && m.arc===ui.activeArc, dim = actA && !inArc;
+    if(m.riser>0){
+      /* risers go below every seat so that neighbouring outlines never hide a musician */
+      const pad=.07, [tx,ty] = toWorldPt(m,[I.w/2-.12, -I.d/2+.12]);
+      risers.push(`<rect x="${-I.w/2-pad}" y="${-I.d/2-pad}" width="${I.w+2*pad}" height="${I.d+2*pad}" rx=".12" class="riser" transform="translate(${m.x} ${m.y}) rotate(${m.rot})"${dim?' opacity=".22"':""}/>`);
+      tops.push(`<text x="${tx.toFixed(3)}" y="${ty.toFixed(3)}" text-anchor="middle" dominant-baseline="central" font-size=".13" stroke-width=".04" class="riser-t"${dim?' opacity=".3"':""} pointer-events="none">+${esc(m.riser)}</text>`);
+    }
     let extra="";
     if(inArc) extra += `<rect x="${-I.w/2-.05}" y="${-I.d/2-.05}" width="${I.w+.1}" height="${I.d+.1}" rx=".09" class="arcm-o"/>`;
     if(!forExport && A.ovl.has(m.id)) extra += `<rect x="${-I.w/2-.03}" y="${-I.d/2-.03}" width="${I.w+.06}" height="${I.d+.06}" rx=".08" class="ovl-o"/>`;
     else if(!forExport && A.out.has(m.id)) extra += `<rect x="${-I.w/2-.03}" y="${-I.d/2-.03}" width="${I.w+.06}" height="${I.d+.06}" rx=".08" class="out-o"/>`;
     if(sel) extra += `<rect x="${-I.w/2-.07}" y="${-I.d/2-.07}" width="${I.w+.14}" height="${I.d+.14}" rx=".1" class="sel-o"/>`;
-    g.push(`<g class="mus" data-mid="${m.id}"${dim?' opacity=".22"':""} transform="translate(${m.x} ${m.y}) rotate(${m.rot})">${shapeSVG(m)}${extra}</g>`);
+    g.push(`<g class="mus" data-mid="${m.id}"${dim?' opacity=".22"':""} transform="translate(${m.x} ${m.y}) rotate(${m.rot})">${shapeSVG(m, standOf(m,groups))}${extra}</g>`);
     if(ui.showLabels){
       const L = labelOf(m), big = I.f==="pc" || I.s==="piano" || I.s==="harp";
       const fs = big ? .22 : .175, ty = big ? m.y : m.y + .02;
       labels.push(`<text x="${m.x}" y="${ty}" text-anchor="middle" font-size="${fs}" stroke-width="${fs*.28}" class="lbl"${dim?' opacity=".3"':""} pointer-events="none">${esc(L.a)}${L.n?`<tspan class="n" x="${m.x}" dy="${fs*1.05}">${L.n}</tspan>`:""}</text>`);
     }
   }
-  return g.join("") + labels.join("");
+  for(const list of groups.values()){
+    const p = sharedStandAt(list), dim = actA && !list.some(m=>m.arc===ui.activeArc);
+    tops.push(`<g transform="translate(${p.x.toFixed(3)} ${p.y.toFixed(3)}) rotate(${p.rot.toFixed(1)})"${dim?' opacity=".22"':""} pointer-events="none">${standT(0,0,.6)}</g>`);
+  }
+  return risers.join("") + g.join("") + tops.join("") + labels.join("");
 }
 function lineHandles(a,s,hr){
   const dir=[Math.cos(rad(a.ang)),Math.sin(rad(a.ang))], n=[Math.sin(rad(a.ang)),-Math.cos(rad(a.ang))];
@@ -2725,6 +2786,12 @@ function overlaySVG(){
       hx=cx; hy=Math.min(...ys)-.6-30/s; lbl = d && d.type==="mrot" ? `${d.delta>0?"+":""}${fmt(d.delta||0,0)}°` : t("h.rotEach");
     }
     sm.forEach(m=>{ if(m.face) out.push(`<line x1="${m.x}" y1="${m.y}" x2="${state.podium.x}" y2="${state.podium.y}" class="face-l"/>`); });
+    /* links every member of a shared stand to it, so partners are visible when one of them is selected */
+    const groups = standGroups();
+    new Set(sm.map(m=>m.sg).filter(k=>groups.has(k))).forEach(k=>{
+      const list = groups.get(k), p = sharedStandAt(list);
+      list.forEach(q=>{ const [x,y] = toWorldPt(q, playerAt(inst(q.key))); out.push(`<line x1="${x}" y1="${y}" x2="${p.x}" y2="${p.y}" class="guide"/>`); });
+    });
     out.push(`<line x1="${cx}" y1="${cy}" x2="${hx}" y2="${hy}" class="guide"/>`);
     out.push(`<g data-h="mrot"><title>${esc(t("h.mrot.t"))}</title><circle cx="${hx}" cy="${hy}" r="${rh}" class="hdl rot"/><text x="${hx}" y="${hy}" font-size="${hr*1.8}" text-anchor="middle" dominant-baseline="central" class="hdl-ico" pointer-events="none">↻</text></g>`);
     out.push(`<text x="${hx+rh+4/s}" y="${hy+fs*.35}" font-size="${fs}" stroke-width="${3/s}" class="hdl-t">${esc(lbl)}</text>`);
@@ -2969,13 +3036,27 @@ function renumber(){
 function delSel(){
   const s=selected(); if(!s.length) return;
   s.forEach(detach); const ids=new Set(s.map(m=>m.id));
-  state.musicians=state.musicians.filter(m=>!ids.has(m.id)); ui.sel.clear(); layoutAllArcs(); syncCounts(); renumber(); commit();
+  state.musicians=state.musicians.filter(m=>!ids.has(m.id)); ui.sel.clear(); tidyStands(); layoutAllArcs(); syncCounts(); renumber(); commit();
   toast(tp("toast.deleted", s.length));
 }
 function dupSel(){
-  const s=selected(); if(!s.length) return; const nw=[];
-  s.forEach(m=>{ nw.push({...m,id:uid(),x:r2(m.x+.4),y:r2(m.y+.4),arc:null,dr:0,num:countOnStage(m.key)+1+nw.filter(q=>q.key===m.key).length}); });
-  state.musicians.push(...nw); ui.sel=new Set(nw.map(m=>m.id)); syncCounts(); commit();
+  const s=selected(); if(!s.length) return; const nw=[], sg={};
+  s.forEach(m=>{ const c={...m,id:uid(),x:r2(m.x+.4),y:r2(m.y+.4),arc:null,dr:0,num:countOnStage(m.key)+1+nw.filter(q=>q.key===m.key).length}; if(m.sg) c.sg = sg[m.sg] = sg[m.sg]||uid(); nw.push(c); });
+  state.musicians.push(...nw); tidyStands(); ui.sel=new Set(nw.map(m=>m.id)); syncCounts(); commit();
+}
+function setPlayer(off){ const s=selected(); if(!s.length) return; s.forEach(m=>{ if(off) m.np=true; else delete m.np; }); commit(); }
+function setStand(mode){
+  const s=selected(); if(!s.length) return;
+  if(mode==="share"){
+    if(s.length<2){ if(!s[0].sg) toast(t("toast.shareNeed")); return; }
+    const g=uid(); s.forEach(m=>{ m.sg=g; m.st="own"; }); tidyStands(); commit(); toast(t("toast.shared",{n:s.length})); return;
+  }
+  s.forEach(m=>{ delete m.sg; m.st=mode; }); tidyStands(); commit();
+}
+/* Riser height in cm; 0 removes the riser. */
+function setRiser(ms, v){
+  if(!ms.length) return; v = Math.round(clamp(v,0,200));
+  ms.forEach(m=>{ if(v) m.riser=v; else delete m.riser; }); commit();
 }
 function rotSel(dg){ const s=selected(); if(!s.length) return; s.forEach(m=>setRot(m, m.rot+dg)); commit(); }
 function toggleFace(){
@@ -3083,16 +3164,24 @@ async function saveFile(filename, data){
   }catch(e){ toast(t("toast.saveUnavailable")); }
 }
 const EXPORT_FONT = "'Barlow Semi Condensed','Arial Narrow',Arial,'Hiragino Sans','Noto Sans JP','Noto Sans SC','Microsoft YaHei',sans-serif";
-const EXPORT_CSS = `.st-floor{fill:#E3CEA6}.st-plank{stroke:#CFB488}.st-edge{fill:none;stroke:#6F5230;stroke-width:2}.st-front{stroke:#6F5230;stroke-width:5}.st-grid{stroke:rgba(70,45,10,.13);stroke-width:1}.st-grid2{stroke:rgba(70,45,10,.28);stroke-width:1}.st-dim,.st-aud{fill:#5B6677;font-family:${EXPORT_FONT};font-weight:600}.st-dimline{stroke:#5B6677;stroke-width:1;fill:none}.pod-r{fill:#fff;stroke:#1A2130;stroke-width:1.5}.pod-t{fill:#1A2130;font-family:${EXPORT_FONT};font-weight:700}.ink-s{stroke:#1A2130}.ink-f{fill:#1A2130}.lbl{fill:#1A2130;font-family:${EXPORT_FONT};font-weight:700;paint-order:stroke;stroke:#F3E6CC;stroke-linejoin:round}.lbl .n{font-weight:500}.arc-l{fill:none;stroke:#1A2130;stroke-opacity:.42;stroke-width:1.4;stroke-dasharray:6 5}.arc-tag{fill:#1A2130;fill-opacity:.6;font-family:${EXPORT_FONT};font-weight:700}.arc-pill{fill:#fff;fill-opacity:.7;stroke:#1A2130;stroke-opacity:.25;stroke-width:1}.tb-t{font-family:${EXPORT_FONT};fill:#1A2130}.tb-m{font-family:${EXPORT_FONT};fill:#5B6677}*{vector-effect:non-scaling-stroke}.lbl,.lbl *{vector-effect:none}`;
+const EXPORT_CSS = `.st-floor{fill:#E3CEA6}.st-plank{stroke:#CFB488}.st-edge{fill:none;stroke:#6F5230;stroke-width:2}.st-front{stroke:#6F5230;stroke-width:5}.st-grid{stroke:rgba(70,45,10,.13);stroke-width:1}.st-grid2{stroke:rgba(70,45,10,.28);stroke-width:1}.st-dim,.st-aud{fill:#5B6677;font-family:${EXPORT_FONT};font-weight:600}.st-dimline{stroke:#5B6677;stroke-width:1;fill:none}.pod-r{fill:#fff;stroke:#1A2130;stroke-width:1.5}.pod-t{fill:#1A2130;font-family:${EXPORT_FONT};font-weight:700}.ink-s{stroke:#1A2130}.ink-f{fill:#1A2130}.lbl{fill:#1A2130;font-family:${EXPORT_FONT};font-weight:700;paint-order:stroke;stroke:#F3E6CC;stroke-linejoin:round}.lbl .n{font-weight:500}.arc-l{fill:none;stroke:#1A2130;stroke-opacity:.42;stroke-width:1.4;stroke-dasharray:6 5}.arc-tag{fill:#1A2130;fill-opacity:.6;font-family:${EXPORT_FONT};font-weight:700}.arc-pill{fill:#fff;fill-opacity:.7;stroke:#1A2130;stroke-opacity:.25;stroke-width:1}.tb-t{font-family:${EXPORT_FONT};fill:#1A2130}.tb-m{font-family:${EXPORT_FONT};fill:#5B6677}.riser{fill:#1A2130;fill-opacity:.04;stroke:#1A2130;stroke-opacity:.6;stroke-width:1.2;stroke-dasharray:5 3}.riser-t{fill:#1A2130;font-family:${EXPORT_FONT};font-weight:600;paint-order:stroke;stroke:#F3E6CC;stroke-linejoin:round}*{vector-effect:non-scaling-stroke}.lbl,.lbl *,.riser-t{vector-effect:none}`;
 function exportSVG(scalePx){
   analyze();
-  const {w:W,d:D}=state.stage, s=scalePx||60, m=1.4, legendH=2.6;
-  const vw=W+2*m, vh=D+m+1.2+legendH;
+  const {w:W,d:D}=state.stage, s=scalePx||60, m=1.4;
   const fam = {}; state.musicians.forEach(x=>{ const f=INST[x.key].f; fam[f]=(fam[f]||0)+1; });
+  const fams = Object.keys(FAM).filter(f=>fam[f]), groups = standGroups();
+  /* the plan's symbols are explained only when they appear in it */
+  const syms = [["riser", state.musicians.some(x=>x.riser>0)], ["shared", groups.size>0], ["instOnly", state.musicians.some(x=>x.np)]].filter(x=>x[1]).map(x=>x[0]);
+  const legendH = Math.max(2.6, 1.35 + (Math.ceil(fams.length/3)-1)*.42 + (syms.length ? .57 : 0));
+  const vw=W+2*m, vh=D+m+1.2+legendH;
   let leg=""; const lx=-m+.4, ly=D+1.55;
-  Object.keys(FAM).filter(f=>fam[f]).forEach((f,i)=>{
+  fams.forEach((f,i)=>{
     const col=i%3, row=Math.floor(i/3), x=lx+col*(vw/3), y=ly+.8+row*.42;
     leg+=`<rect x="${x}" y="${y-.22}" width=".26" height=".26" rx=".04" fill="${FAM[f].c}"/><text x="${x+.4}" y="${y}" font-size=".26" class="tb-m">${esc(famName(f))} (${fam[f]})</text>`;
+  });
+  syms.forEach((k,i)=>{
+    const x=lx+i*(vw/3), y=ly+.8+Math.ceil(fams.length/3)*.42+.15;
+    leg+=`<g transform="translate(${x-.07} ${y-.3}) scale(.025)">${SYMS[k]}</g><text x="${x+.62}" y="${y}" font-size=".26" class="tb-m">${esc(t("sym."+k))}</text>`;
   });
   const title = `<text x="${lx}" y="${ly+.15}" font-size=".42" font-weight="700" class="tb-t">${esc(t("export.title",{name:curFormName(), count:tp("count.positions", state.musicians.length)}))}</text><text x="${W+m-.4}" y="${ly+.15}" font-size=".28" text-anchor="end" class="tb-m">${esc(t("export.meta",{layout:lName(getLayoutId(),getLayout()), w:fmt(W), d:fmt(D), date:new Date().toLocaleDateString(loc())}))}</text>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${-m} ${-1.2} ${vw} ${vh}" width="${Math.round(vw*s)}" height="${Math.round(vh*s)}"><style>${EXPORT_CSS}</style><defs>${PLANKS('fill="#E3CEA6"','stroke="#CFB488"')}</defs><rect x="${-m}" y="-1.2" width="${vw}" height="${vh}" fill="#ffffff"/>${stageSVG()}${arcsSVG(true)}${podiumSVG()}${musiciansSVG(true)}${arcsSVG(true,"tags")}${title}${leg}</svg>`;
@@ -3226,6 +3315,7 @@ function selHTML(){
     const by={}; s.forEach(m=>{ const ab=instAbbr(m.key); by[ab]=(by[ab]||0)+1; });
     h += `<p class="hint">${Object.entries(by).map(([ab,n])=>`${esc(ab)} ${n}`).join(", ")}</p>`;
   }
+  h += partsHTML(s);
   const allFace = s.every(m=>m.face), someFace = !allFace && s.some(m=>m.face);
   h += `<button class="btn wide facebtn" data-act="face" aria-pressed="${allFace}" title="${esc(t("sel.face.t"))}" style="margin-top:8px"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="3"/><path d="M10 1v3M10 16v3M1 10h3M16 10h3"/></svg>${esc(t(allFace?"sel.faceOn":"sel.faceOff"))}</button>${someFace?`<p class="hint" style="margin:4px 0 0">${esc(t("sel.faceSome"))}</p>`:""}<p class="hint" style="margin:6px 0 0">${esc(t(allFace?"sel.faceOnHint":"sel.faceOffHint"))}</p>`;
   h += `<div class="btnrow"><button class="btn" data-act="rotm" title="${esc(t("sel.rotm.t"))}">↺ 15°</button><button class="btn" data-act="rotp" title="${esc(t("sel.rotp.t"))}">↻ 15°</button></div>`;
@@ -3242,6 +3332,20 @@ function selHTML(){
     <div class="btnrow"><button class="btn" data-act="dup">${esc(t("sel.dup"))}</button><button class="btn danger" data-act="del">${esc(t("sel.del"))}</button></div>`;
   return h;
 }
+/* Musician, stand and riser of the selected positions; a mixed selection leaves no button pressed. */
+function partsHTML(s){
+  const groups = standGroups(), st = s.map(m=>standOf(m,groups)), all = v=>st.every(x=>x===v);
+  const shared = all("shared") && s.every(m=>m.sg===s[0].sg);
+  const rz = new Set(s.map(m=>m.riser||0)), rv = rz.size===1 ? [...rz][0] : "";
+  let h = `<span class="plbl">${esc(t("part.player"))}</span><div class="seg" role="group" aria-label="${esc(t("part.player"))}"><button data-act="pl-on" aria-pressed="${s.every(m=>!m.np)}">${esc(t("part.present"))}</button><button data-act="pl-off" aria-pressed="${s.every(m=>m.np)}">${esc(t("part.instOnly"))}</button></div>
+    <span class="plbl">${esc(t("part.stand"))}</span><div class="seg" role="group" aria-label="${esc(t("part.stand"))}"><button data-act="st-own" aria-pressed="${all("own")}">${esc(t("part.own"))}</button><button data-act="st-share" aria-pressed="${shared}">${esc(t("part.shared"))}</button><button data-act="st-none" aria-pressed="${all("none")}">${esc(t("part.none"))}</button></div>`;
+  if(s.length===1 && st[0]==="shared"){
+    const list = groups.get(s[0].sg).filter(q=>q!==s[0]).map(q=>{ const L=labelOf(q); return L.a+(L.n?" "+L.n:""); }).join(", ");
+    h += `<p class="hint">${esc(t("part.sharedWith",{list}))}</p>`;
+  } else if(s.length===1) h += `<p class="hint">${esc(t("part.shareHint"))}</p>`;
+  h += `<label class="mini">${esc(t("part.riser"))}<input type="number" step="10" min="0" max="200" value="${esc(rv)}" placeholder="–" data-selp="riser"></label>`;
+  return h;
+}
 function arcsHTML(){
   let h = `<h3>${esc(t("arcs.title"))}<span class="aside">${state.arcs.length}</span></h3>
     <label class="toggle"><input type="checkbox" data-tog="showArcs" ${ui.showArcs?"checked":""}> ${esc(t("arcs.show"))}</label>
@@ -3249,6 +3353,8 @@ function arcsHTML(){
     <p class="hint" style="margin-top:6px">${esc(t(state.arcs.length?"arcs.hint":"arcs.none"))}</p>`;
   state.arcs.forEach((a,i)=>{
     const act = ui.activeArc===a.id, isL = a.shape==="line";
+    const rz = new Set(a.members.map(id=>(state.musicians.find(m=>m.id===id)||{}).riser||0));
+    const riser = `<label class="mini" style="margin-bottom:8px">${esc(t("arcs.riser"))}<input type="number" step="10" min="0" max="200" value="${rz.size===1?[...rz][0]:""}" placeholder="–" data-arcp="riser"></label>`;
     h += `<div class="arcitem${act?" active":""}" data-arcitem="${a.id}"><header data-arcsel="${a.id}">${esc(arcTag(i))} <small class="shp">${esc(t(isL?"arcs.line":"arcs.arc"))}</small><span>${esc(tp("count.musicians", a.members.length))}</span></header>`;
     if(act) h += `<div class="seg" role="group" aria-label="${esc(t("arcs.shape"))}"><button data-act="toarc" aria-pressed="${!isL}">${esc(t("arcs.toArc"))}</button><button data-act="toline" aria-pressed="${isL}">${esc(t("arcs.toLine"))}</button></div>`;
     if(act && isL) h += `<div class="grid2">
@@ -3257,7 +3363,7 @@ function arcsHTML(){
         <label class="mini">${esc(t("arcs.cx"))}<input type="number" step=".05" value="${a.x}" data-arcp="x"></label>
         <label class="mini">${esc(t("arcs.cy"))}<input type="number" step=".05" value="${a.y}" data-arcp="y"></label>
       </div>
-      <div class="btnrow"><button class="btn" data-act="arcselm">${esc(t("arcs.selm"))}</button><button class="btn danger" data-act="arcdel">${esc(t("arcs.delLine"))}</button></div>`;
+      ${riser}<div class="btnrow"><button class="btn" data-act="arcselm">${esc(t("arcs.selm"))}</button><button class="btn danger" data-act="arcdel">${esc(t("arcs.delLine"))}</button></div>`;
     else if(act) h += `<div class="grid2">
         <label class="mini">${esc(t("arcs.r"))}<input type="number" step=".05" min=".6" value="${a.r}" data-arcp="r"></label>
         <label class="mini">${esc(t("arcs.span"))}<input type="number" step="1" min="4" max="358" value="${r2(a.a1-a.a0)}" data-arcp="span"></label>
@@ -3265,7 +3371,7 @@ function arcsHTML(){
         <label class="mini">${esc(t("arcs.off"))}<input type="number" step=".25" min="0" max="40" value="${a.off||0}" data-arcp="off"></label>
       </div>
       <label class="mini">${esc(t("arcs.curv"))}<input type="range" min="0" max="100" value="${Math.round(100*(a.r-(a.off||0))/a.r)}" data-arcp="curv" style="accent-color:var(--accent)"></label>
-      <div class="btnrow"><button class="btn" data-act="arcselm">${esc(t("arcs.selm"))}</button><button class="btn danger" data-act="arcdel">${esc(t("arcs.delArc"))}</button></div>`;
+      ${riser}<div class="btnrow"><button class="btn" data-act="arcselm">${esc(t("arcs.selm"))}</button><button class="btn danger" data-act="arcdel">${esc(t("arcs.delArc"))}</button></div>`;
     h += `</div>`;
   });
   h += `<div class="btnrow"><button class="btn" data-act="newarc">${esc(t("arcs.newArc"))}</button><button class="btn" data-act="newline">${esc(t("arcs.newLine"))}</button><button class="btn" data-act="renum" title="${esc(t("arcs.renum.t"))}">${esc(t("arcs.renum"))}</button></div>`;
@@ -3283,6 +3389,10 @@ function anaHTML(){
   const occ = A.area/(S.w*S.d)*100;
   let h = `<h3>${esc(t("ana.title"))}</h3><dl class="stats">
     <dt>${esc(t("ana.positions"))}</dt><dd>${n}</dd>
+    <dt>${esc(t("ana.players"))}</dt><dd>${A.players}</dd>
+    ${n>A.players?`<dt>${esc(t("ana.instOnly"))}</dt><dd>${n-A.players}</dd>`:""}
+    <dt>${esc(t("ana.stands"))}</dt><dd>${A.stands}</dd>
+    ${A.risers?`<dt>${esc(t("ana.risers"))}</dt><dd>${A.risers}</dd>`:""}
     <dt>${esc(t("ana.stage"))}</dt><dd>${fmt(S.w*S.d,1)} m²</dd>
     <dt>${esc(t("ana.area"))}</dt><dd>${fmt(A.area,1)} m² (${fmt(occ,0)}%)</dd>
     <dt>${esc(t("ana.per"))}</dt><dd>${n?fmt(S.w*S.d/n,2):"–"} m²</dd>
@@ -3296,9 +3406,18 @@ function anaHTML(){
   if(n && occ>55) h += `<div class="warn mid"><span>${esc(t("ana.full"))}</span></div>`;
   return h;
 }
+/* Symbol keys, drawn in a 24×16 box: used by the legend panel and by the exported plan. */
+const SYMS = {
+  player:`<circle cx="12" cy="8" r="4" class="ink-f"/>`,
+  stand:`<line x1="12" y1="12" x2="12" y2="5" class="ink-s" stroke-width="1.5"/><line x1="6" y1="12" x2="18" y2="12" class="ink-s" stroke-width="3" stroke-linecap="round"/>`,
+  shared:`<circle cx="5" cy="4" r="3" class="ink-f"/><circle cx="19" cy="4" r="3" class="ink-f"/><line x1="12" y1="14" x2="12" y2="9" class="ink-s" stroke-width="1.5"/><line x1="7" y1="14" x2="17" y2="14" class="ink-s" stroke-width="3" stroke-linecap="round"/>`,
+  riser:`<rect x="2" y="2" width="20" height="12" rx="2" class="riser"/>`,
+  instOnly:`<path d="M4 5H20L19 12H5Z" fill="none" class="ink-s" stroke-width="1.3"/><path d="M8 5V10M12 5V10M16 5V10" class="ink-s" stroke-width="1"/>`
+};
 function legendHTML(){
   const fam={}; state.musicians.forEach(m=>{ const f=INST[m.key].f; fam[f]=(fam[f]||0)+1; });
   return `<h3>${esc(t("leg.title"))}</h3><div class="legend">${Object.keys(FAM).filter(f=>fam[f]).map(f=>`<div><i style="background:${FAM[f].c}"></i>${esc(famName(f))}<span>${fam[f]}</span></div>`).join("")}</div>
+    <div class="legend syms" aria-label="${esc(t("sym.title"))}">${Object.keys(SYMS).map(k=>`<div><svg viewBox="0 0 24 16" aria-hidden="true">${SYMS[k]}</svg>${esc(t("sym."+k))}</div>`).join("")}</div>
     <p class="hint" style="margin-top:8px">${esc(t("leg.note"))}</p>`;
 }
 function renderRight(){
@@ -3403,6 +3522,8 @@ rightPane.addEventListener("click",e=>{
     case "toline": { const a=arcById(ui.activeArc); if(a){ toLine(a); commit(); toast(t("toast.toLine")); } break; }
     case "toarc": { const a=arcById(ui.activeArc); if(a){ toArc(a); commit(); toast(t("toast.toArc")); } break; }
     case "dup": dupSel(); break; case "del": delSel(); break;
+    case "pl-on": case "pl-off": setPlayer(b.dataset.act==="pl-off"); break;
+    case "st-own": case "st-none": case "st-share": setStand(b.dataset.act.slice(3)); break;
     case "arcselm": { const a=arcById(ui.activeArc); if(a){ ui.sel=new Set(a.members); renderRight(); requestRender(); } break; }
     case "arcdel": deleteArc(ui.activeArc); break;
     case "renum": renumber(); commit(); toast(t("toast.renum")); break;
@@ -3422,6 +3543,7 @@ rightPane.addEventListener("change",e=>{
   if(tg.dataset.arcp){
     const a=arcById(ui.activeArc); if(!a) return; const v=+tg.value; if(isNaN(v)) return;
     const k=tg.dataset.arcp;
+    if(k==="riser"){ setRiser(state.musicians.filter(m=>a.members.includes(m.id)), v); return; }
     if(a.shape==="line"){
       if(k==="len") a.len=r2(clamp(v,.6,60));
       if(k==="ang") a.ang=r2(normA(v));
@@ -3436,6 +3558,7 @@ rightPane.addEventListener("change",e=>{
     if(k==="off") setFlatten(a,v);
     layoutArc(a); commit(); return;
   }
+  if(tg.dataset.selp==="riser"){ const v=+tg.value; if(!isNaN(v)) setRiser(selected(), v); return; }
   if(tg.dataset.mprop){
     const m=selected()[0]; if(!m) return; const p=tg.dataset.mprop;
     if(p==="key"){ m.key=tg.value; m.num=countOnStage(tg.value); if(m.arc){ const a=arcById(m.arc); if(a) layoutArc(a); } syncCounts(); }

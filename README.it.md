@@ -11,6 +11,7 @@ Applicazione web per disporre gli orchestrali di un’orchestra di fiati o di un
 - **Formazioni pronte e modificabili**: orchestra di fiati sinfonica, wind ensemble (modello Fennell), banda all’italiana con flicorni, banda giovanile, Harmoniemusik, ottoni e percussioni, brass band britannica, fanfara. Ogni preset si può modificare, duplicare o creare da zero.
 - **Tipologie di disposizione** con descrizione e testi di riferimento, anch’esse modificabili fascia per fascia.
 - **Ingombri reali** di sedia, leggio e strumento, modificabili.
+- **Musicista, leggio e strumento** come parti distinte di ogni posizione: uno strumento ingombrante (timpani, xilofono…) può restare senza musicista, un leggio può essere condiviso da più musicisti o tolto, e singole posizioni o file intere possono stare su una **pedana**, disegnata come un leggero contorno tratteggiato con l’altezza in cm. L’analisi conta musicisti, leggii e pedane.
 - **Archi e file rettilinee** modificabili con le maniglie; ogni fila può passare da arco a linea e viceversa.
 - **Selezione multipla**, allineamento, rotazione con maniglia, opzione “sempre rivolto al direttore”.
 - **Controlli automatici**, esportazione PNG e SVG, progetti in JSON, annulla e ripeti.
