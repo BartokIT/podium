@@ -1,4 +1,4 @@
-# Stage Plan
+# Podium
 
 A web app for seating the players of a wind orchestra or concert band on stage. It runs in the browser, installs as an app on phones and computers, works offline, can save projects to Google Drive, and is available in eight languages.
 
